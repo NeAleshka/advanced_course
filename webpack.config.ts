@@ -12,7 +12,8 @@ export default (env:BuildENV)=>{
         paths: {
             html: path.resolve(__dirname, 'public', 'index.html'),
             output: path.resolve(__dirname, 'build'),
-            entry: path.resolve(__dirname, 'src', 'main.tsx')
+            entry: path.resolve(__dirname, 'src', 'main.tsx'),
+            src:path.resolve(__dirname, 'src')
         },
         port: 3000,
         isDev
