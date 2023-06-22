@@ -21,6 +21,7 @@ module.exports = {
 				'@typescript-eslint/naming-convention': 'off',
 				'@typescript-eslint/no-unsafe-call': 'off',
 				'@typescript-eslint/no-unsafe-assignment': 'off',
+				'@typescript-eslint/consistent-type-definitions': 'off',
 			},
 		},
 	],
@@ -30,6 +31,7 @@ module.exports = {
 		sourceType: 'module',
 		ecmaFeatures: {
 			jsx: true,
+
 		},
 	},
 	plugins: [
@@ -46,7 +48,6 @@ module.exports = {
 		'@typescript-eslint/indent': ['error', 'tab'],
 		indent: ['error', 'tab'],
 		'capitalized-comments': 'off',
-
 	},
 	globals: {
 		__IS__DEV__: true,

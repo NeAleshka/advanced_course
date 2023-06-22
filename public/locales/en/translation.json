@@ -2,5 +2,7 @@
   "main_page": "Main Page",
   "about_page": "About Us",
   "lang": "English",
-  "not_found_page": "Page not found"
+  "not_found_page": "Page not found",
+  "unexpected error": "Unexpected error",
+  "reload_page": "Перезагрузить страницу"
 }
