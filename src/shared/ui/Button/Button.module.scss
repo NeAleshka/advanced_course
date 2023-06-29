@@ -8,3 +8,9 @@
 .button{
   cursor: pointer;
 }
+
+.outline{
+  padding: 10px 15px;
+  border: 1px solid var(--primaty-color);
+  color: var(--primaty-color);
+}

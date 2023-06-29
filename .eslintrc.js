@@ -4,40 +4,27 @@ module.exports = {
 		es2021: true,
 		jest: true,
 	},
-	extends: [
-		'xo',
-		'plugin:react/recommended',
-	],
-	overrides: [
-		{
-			extends: [
-				'xo-typescript',
-			],
-			files: [
-				'*.ts',
-				'*.tsx',
-			],
-			rules: {
-				'@typescript-eslint/naming-convention': 'off',
-				'@typescript-eslint/no-unsafe-call': 'off',
-				'@typescript-eslint/no-unsafe-assignment': 'off',
-				'@typescript-eslint/consistent-type-definitions': 'off',
-			},
+	extends: ['xo', 'plugin:react/recommended', 'plugin:storybook/recommended'],
+	overrides: [{
+		extends: ['xo-typescript'],
+		files: ['*.ts', '*.tsx'],
+		rules: {
+			'@typescript-eslint/naming-convention': 'off',
+			'@typescript-eslint/no-unsafe-call': 'off',
+			'@typescript-eslint/no-unsafe-assignment': 'off',
+			'@typescript-eslint/consistent-type-definitions': 'off',
+			'@typescript-eslint/prefer-includes': 'off',
 		},
-	],
+	}],
 	parser: '@typescript-eslint/parser',
 	parserOptions: {
 		ecmaVersion: 'latest',
 		sourceType: 'module',
 		ecmaFeatures: {
 			jsx: true,
-
 		},
 	},
-	plugins: [
-		'react',
-		'@typescript-eslint',
-	],
+	plugins: ['react', '@typescript-eslint'],
 	settings: {
 		react: {
 			version: '17.0.2',
@@ -48,6 +35,8 @@ module.exports = {
 		'@typescript-eslint/indent': ['error', 'tab'],
 		indent: ['error', 'tab'],
 		'capitalized-comments': 'off',
+		'react/display-name': 'off',
+		'new-cap': 'off',
 	},
 	globals: {
 		__IS__DEV__: true,
