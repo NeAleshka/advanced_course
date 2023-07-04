@@ -3,24 +3,24 @@
 @import "themes/dark";
 @import "themes/light";
 
-*{
+* {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
 }
 
-.app{
+.app {
   font: var(--font-m);
   background: var(--bg-color);
-  color: var(--primaty-color);
+  color: var(--primary-color);
   min-height: 100vh;
 }
 
-.content-page{
+.content-page {
   display: flex;
 }
 
-.page-wrapper{
+.page-wrapper {
   flex-grow: 1;
   padding: 20px;
 }

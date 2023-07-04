@@ -6,18 +6,23 @@ import i18n from 'shared/config/i18n';
 
 type LangSwitcherProps = {
 	className?: string;
+	short?: boolean;
 };
 
 export const LangSwitcher = (props: LangSwitcherProps) => {
-	const {className = ''} = props;
+	const {className = '', short = false} = props;
 	const {t} = useTranslation();
 	const toggleLang = async () => {
 		await i18n.changeLanguage(i18n.language === 'ru' ? 'en' : 'ru').then();
 	};
 
 	return (
-		<Button theme={ButtonTheme.CLEAR} onClick={toggleLang} className={classNames(cls.LangSwitcher, {}, [className])}>
-			{t('lang')}
+		<Button
+			theme={ButtonTheme.CLEAR}
+			onClick={toggleLang}
+			className={classNames(cls.LangSwitcher, {}, [className])}
+		>
+			{short ? t('short_lang') : t('lang')}
 		</Button>
 	);
 };

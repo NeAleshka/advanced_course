@@ -3,6 +3,7 @@ import {Theme} from 'app/providers/ThemeProvider/lib/ThemeContext';
 import {SideBar} from './SideBar';
 import {ThemeDecorator} from 'shared/config/storybook/decarators/ThemeDecorator';
 import {Suspense} from 'react';
+import {BrowserRouter} from 'react-router-dom';
 
 const meta: Meta<typeof SideBar> = {
 	title: 'widgets/SideBar',
@@ -11,7 +12,9 @@ const meta: Meta<typeof SideBar> = {
 	decorators: [
 		Story => (
 			<Suspense fallback={''}>
-				<Story />
+				<BrowserRouter>
+					<Story />
+				</BrowserRouter>
 			</Suspense>
 		),
 	],

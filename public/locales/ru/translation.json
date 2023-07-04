@@ -4,5 +4,6 @@
   "lang": "Русский",
   "not_found_page": "Страница не найдена",
   "unexpected error": "Непредвиденная ошибка",
-  "reload_page": "Reload page"
+  "reload_page": "Перезагрузить страницу",
+  "short_lang":"Ру"
 }

@@ -37,7 +37,6 @@ module.exports = {
 		'capitalized-comments': 'off',
 		'react/display-name': 'off',
 		'new-cap': 'off',
-		'linebreak-style': 'off',
 	},
 	globals: {
 		__IS__DEV__: true,
