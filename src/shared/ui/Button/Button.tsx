@@ -23,8 +23,7 @@ type ButtonProps = {
 } & ButtonHTMLAttributes<HTMLButtonElement>;
 
 export const Button: FC<ButtonProps> = props => {
-	const {className = '', theme = ButtonTheme.BACKGROUND, children, square = false, size = ButtonSizes.M,
-		...restProps} = props;
+	const {className = '', theme = ButtonTheme.BACKGROUND, children, square = false, size = ButtonSizes.M, ...restProps} = props;
 
 	const mods: Record<string, boolean> = {
 		[cls.square]: square,
