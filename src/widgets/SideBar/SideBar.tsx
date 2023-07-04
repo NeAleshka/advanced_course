@@ -5,9 +5,9 @@ import {ThemeSwitcher} from 'shared/ui/ThemeSwitcher';
 import {LangSwitcher} from 'shared/ui/LangSwitcher';
 import {Button, ButtonSizes, ButtonTheme} from 'shared/ui/Button/Button';
 import AppLink, {AppLinkTheme} from 'shared/ui/AppLink/AppLink';
-import {useTranslation} from 'react-i18next';
 import {RouterPath} from 'shared/config/routerConfig/routerConfig';
-import {HomeIcon, ListIcon} from '../../shared/assets/icons';
+import {HomeIcon, ListIcon} from 'shared/assets/icons';
+import {t} from 'i18next';
 
 type SideBarProps = {
 	className?: string;
@@ -15,7 +15,6 @@ type SideBarProps = {
 
 export const SideBar = (props: SideBarProps) => {
 	const {className = ''} = props;
-	const {t} = useTranslation();
 	const [collapsed, setCollapsed] = useState(true);
 	const toggleCollapsed = () => {
 		setCollapsed(prevState => !prevState);

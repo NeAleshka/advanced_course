@@ -1,9 +1,12 @@
 import {fireEvent, render, screen} from '@testing-library/react';
 import {SideBar} from './SideBar';
 import {Suspense} from 'react';
+import {BrowserRouter} from 'react-router-dom';
 
 const TestSideBar = () => <Suspense fallback={''}>
-	<SideBar />
+	<BrowserRouter>
+		<SideBar />
+	</BrowserRouter>
 </Suspense>;
 
 describe('SideBAr tests', () => {
