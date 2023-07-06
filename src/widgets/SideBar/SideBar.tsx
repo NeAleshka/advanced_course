@@ -32,6 +32,7 @@ export const SideBar = (props: SideBarProps) => {
 					<HomeIcon className={cls.link_icon}/>
 					<span className={cls.link_name}>{t('main_page')}</span>
 				</AppLink>
+
 				<AppLink className={cls.link} theme={AppLinkTheme.PRIMARY} to={RouterPath.about}>
 					<ListIcon className={cls.link_icon} width={25}/>
 					<span className={cls.link_name}>{t('about_page')}</span>

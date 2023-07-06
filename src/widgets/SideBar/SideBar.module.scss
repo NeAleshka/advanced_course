@@ -1,7 +1,7 @@
 .SideBar {
   height: calc(100vh - var(--navbar-height));
   background: var(--inverted--bg-color);
-  width: 300px;
+  width: var(--sidebar-width);
   transition: width 0.3s;
   position: relative;
 }
@@ -47,7 +47,7 @@
 }
 
 .collapsed {
-  width: 80px;
+  width: var(--sidebar-width-colapsed);
 
   .switchers {
     flex-direction: column;

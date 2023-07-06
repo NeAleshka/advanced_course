@@ -4,7 +4,7 @@ module.exports = {
 		es2021: true,
 		jest: true,
 	},
-	extends: ['xo', 'plugin:react/recommended', 'plugin:storybook/recommended'],
+	extends: ['xo', 'plugin:react/recommended', 'plugin:storybook/recommended', 'plugin:react-hooks/recommended'],
 	overrides: [{
 		extends: ['xo-typescript'],
 		files: ['*.ts', '*.tsx'],
@@ -24,7 +24,7 @@ module.exports = {
 			jsx: true,
 		},
 	},
-	plugins: ['react', '@typescript-eslint'],
+	plugins: ['react', '@typescript-eslint', 'react-hooks'],
 	settings: {
 		react: {
 			version: '17.0.2',
