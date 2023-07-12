@@ -13,7 +13,7 @@ export const Counter = () => {
 		dispatch(counterActions.decrement());
 	};
 
-	const value = useSelector(getCounterValue());
+	const value = useSelector(getCounterValue);
 
 	return (
 		<div >
