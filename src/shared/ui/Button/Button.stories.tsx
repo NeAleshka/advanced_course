@@ -83,3 +83,10 @@ export const Size_XL: Story = {
 		size: ButtonSizes.XL,
 	},
 };
+
+export const Inverted_Clear: Story = {
+	args: {
+		children: 'Inverted Clear',
+		theme: ButtonTheme.INVERTEDCLEAR,
+	},
+};

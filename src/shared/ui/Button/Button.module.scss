@@ -1,8 +1,13 @@
-.clear {
+.clear,
+.invertedClear{
   padding: 0;
   border: none;
   background: none;
   outline: none;
+}
+
+.invertedClear{
+  color: var(--inverted-primary-color);
 }
 
 .button {
@@ -26,6 +31,8 @@
   color: var(--inverted-primary-color);
   border: none;
 }
+
+
 
 .square {
   padding: 0;
