@@ -7,9 +7,12 @@
   margin: 0;
   padding: 0;
   box-sizing: border-box;
+
+
 }
 
-body{
+.app,
+.app_modal{
   font: var(--font-m);
   color: var(--primary-color);
 }
@@ -17,6 +20,7 @@ body{
 .app {
   background: var(--bg-color);
   min-height: 100vh;
+  font-weight: 600;
 }
 
 .content-page {

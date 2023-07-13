@@ -2,6 +2,7 @@ import cls from './Modal.module.scss';
 import {classNames} from 'shared/lib/classNames';
 import {type ReactNode, useCallback, useEffect, useRef, useState} from 'react';
 import Portal from 'shared/ui/Portal/Portal';
+import {useTheme} from 'app/providers/ThemeProvider';
 
 interface ModalProps {
 	className?: string;
@@ -13,6 +14,8 @@ interface ModalProps {
 export const Modal = ({className = '', children, isOpen = false, onClose}: ModalProps) => {
 	const [isClosed, setIsClosed] = useState(false);
 	const timerRef = useRef<ReturnType<typeof setTimeout>>();
+	const {theme} = useTheme();
+
 	const closeModal = useCallback(() => {
 		if (onClose) {
 			setIsClosed(true);
@@ -46,7 +49,7 @@ export const Modal = ({className = '', children, isOpen = false, onClose}: Modal
 	};
 	return (
 		<Portal >
-			<div className={classNames(cls.Modal, mods, [className])}>
+			<div className={classNames(cls.Modal, mods, [className, theme, 'app_modal'])}>
 				<div className={cls.overlay} onClick={closeModal}>
 					<div className={cls.content} onClick={event => {
 						event.stopPropagation();
