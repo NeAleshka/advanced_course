@@ -3,7 +3,7 @@ import classes from './NavBar.module.scss';
 import {useTranslation} from 'react-i18next';
 import {useCallback, useState} from 'react';
 import {Button, ButtonTheme} from 'shared/ui/Button/Button';
-import {LoginModal} from 'features/AuthByusername/ui/LoginModal/LoginModal';
+import {LoginModal} from 'features/AuthByUserName';
 import {useDispatch, useSelector} from 'react-redux';
 import {getUserAuthData, userActions} from 'entities/User';
 import {loginActions} from 'features/AuthByUserName';
