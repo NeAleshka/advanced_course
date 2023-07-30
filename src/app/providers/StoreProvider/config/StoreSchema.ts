@@ -5,3 +5,4 @@ export interface StoreSchema {
 	user: UserSchema;
 	loginForm: LoginSchema;
 }
+// comment
