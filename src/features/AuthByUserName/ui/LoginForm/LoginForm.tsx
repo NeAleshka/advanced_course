@@ -11,11 +11,11 @@ import {Button, ButtonTheme} from 'shared/ui/Button/Button';
 import cls from './LoginForm.module.scss';
 import {Text, ThemeText} from 'shared/ui/Text/Text';
 
-interface LoginFormProps {
+export interface LoginFormProps {
 	className?: string;
 }
 
-export const LoginForm = memo(({className = ''}: LoginFormProps) => {
+const LoginForm = memo(({className = ''}: LoginFormProps) => {
 	const {t} = useTranslation();
 	const dispatch = useDispatch();
 	const {username, password, isLoading, error} = useSelector(getLoginState);
@@ -60,3 +60,5 @@ export const LoginForm = memo(({className = ''}: LoginFormProps) => {
 		</div>
 	);
 });
+
+export default LoginForm;
