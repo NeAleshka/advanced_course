@@ -2,7 +2,7 @@ import {Provider} from 'react-redux';
 import {createReduxStore} from 'app/providers/StoreProvider';
 import {type StoreSchema} from 'app/providers/StoreProvider/config/StoreSchema';
 import {type DeepPartial} from '@reduxjs/toolkit';
-import {type ReactNode} from 'react';
+import React, {type ReactNode} from 'react';
 
 interface StoreProviderProps {
 	children?: ReactNode;
@@ -19,4 +19,3 @@ export const StoreProvider = (props: StoreProviderProps) => {
 		</Provider>
 	);
 };
-// comment
