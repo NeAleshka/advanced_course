@@ -1,4 +1,3 @@
-import cls from './Input.module.scss';
 import {classNames} from 'shared/lib/classNames';
 import {type ChangeEvent, type InputHTMLAttributes} from 'react';
 
@@ -23,5 +22,5 @@ export const Input = (props: InputProps) => {
 		onChange?.(event.target.value);
 	};
 
-	return <input className={classNames(cls.Input, {}, [className])} type={type} value={value} onChange={onChangeHandler} {...restProps}/>;
+	return <input className={classNames('', {}, [className])} type={type} value={value} onChange={onChangeHandler} {...restProps}/>;
 };
