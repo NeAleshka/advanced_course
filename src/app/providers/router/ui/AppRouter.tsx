@@ -1,10 +1,10 @@
 import {Suspense} from 'react';
 import {Route, Routes} from 'react-router-dom';
 import {routerConfig} from 'shared/config/routerConfig/routerConfig';
-import {Loader} from 'widgets/Loader/Loader';
+import {FullPageLoader} from 'app/App';
 
 const AppRouter = () => (
-	<Suspense fallback={<Loader/>}>
+	<Suspense fallback={<FullPageLoader/>}>
 		<Routes>
 			{
 				Object.values(routerConfig).map(({path, element}) =>

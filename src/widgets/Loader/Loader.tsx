@@ -3,21 +3,23 @@ import {classNames} from 'shared/lib/classNames';
 
 type LoaderProps = {
 	className?: string;
+	theme?: LoaderTheme;
 };
 
-export const Loader = ({className = ''}: LoaderProps) => (
+export enum LoaderTheme {
+	INVERTED = 'inverted',
+	CLEAR = 'clear',
+}
 
-	<div className={'page_loader'}>
-		<div className={classNames('lds-roller', {}, [className])}>
-			<div></div>
-			<div></div>
-			<div></div>
-			<div></div>
-			<div></div>
-			<div></div>
-			<div></div>
-			<div></div>
-		</div>
+export const Loader = ({className = '', theme = LoaderTheme.INVERTED}: LoaderProps) => (
+	<div className={classNames('lds-roller', {}, [className])}>
+		<div className={classNames('', {}, [className, theme])}></div>
+		<div className={classNames('', {}, [className, theme])}></div>
+		<div className={classNames('', {}, [className, theme])}></div>
+		<div className={classNames('', {}, [className, theme])}></div>
+		<div className={classNames('', {}, [className, theme])}></div>
+		<div className={classNames('', {}, [className, theme])}></div>
+		<div className={classNames('', {}, [className, theme])}></div>
+		<div className={classNames('', {}, [className, theme])}></div>
 	</div>
-
 );

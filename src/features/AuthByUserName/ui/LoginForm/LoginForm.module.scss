@@ -1,0 +1,22 @@
+.LoginForm{
+  display: flex;
+  flex-direction: column;
+  min-width: 300px;
+  align-items: center;
+}
+
+.login_input{
+  width: 100%;
+}
+
+.login{
+  margin-bottom: 10px;
+}
+
+.button{
+  width: fit-content;
+}
+
+.loader{
+  min-height: 20px;
+}

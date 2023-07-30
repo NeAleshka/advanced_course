@@ -4,7 +4,7 @@ import {type ReactNode, useCallback, useEffect, useRef, useState} from 'react';
 import Portal from 'shared/ui/Portal/Portal';
 import {useTheme} from 'app/providers/ThemeProvider';
 
-interface ModalProps {
+export interface ModalProps {
 	className?: string;
 	children: ReactNode;
 	isOpen?: boolean;
