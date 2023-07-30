@@ -1,5 +1,5 @@
 import {type UserSchema} from 'entities/User';
-import {type LoginSchema} from 'features/AuthByusername';
+import {type LoginSchema} from '../../../../features/AuthByUserName';
 
 export interface StoreSchema {
 	user: UserSchema;
