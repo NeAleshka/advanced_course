@@ -1,6 +1,6 @@
 import {createSlice, type PayloadAction} from '@reduxjs/toolkit';
 import {type LoginSchema} from '../types/loginSchema';
-import {loginByUsername} from 'features/AuthByUserName';
+import {loginByUsername} from '../services/loginByUserName/loginByUserName';
 
 const initialState: LoginSchema = {
 	isLoading: false,
@@ -17,16 +17,12 @@ export const loginSlice = createSlice({
 		setPassword(state, {payload}: PayloadAction<string>) {
 			state.password = payload;
 		},
-		clearLoginData(state) {
-			state.username = '';
-			state.password = '';
-			state.error = '';
-		},
 	},
 	extraReducers(builder) {
-		builder.addCase(loginByUsername.fulfilled, (state, {payload}) => {
-			state.username = payload.username;
+		builder.addCase(loginByUsername.fulfilled, state => {
 			state.isLoading = false;
+			state.password = '';
+			state.username = '';
 		});
 		builder.addCase(loginByUsername.rejected, (state, {payload}) => {
 			if (payload) {

@@ -14,6 +14,8 @@ module.exports = {
 			'@typescript-eslint/no-unsafe-assignment': 'off',
 			'@typescript-eslint/consistent-type-definitions': 'off',
 			'@typescript-eslint/prefer-includes': 'off',
+			'@typescript-eslint/no-dynamic-delete': 'off',
+			'@typescript-eslint/ban-ts-comment': 'warn',
 		},
 	}],
 	parser: '@typescript-eslint/parser',

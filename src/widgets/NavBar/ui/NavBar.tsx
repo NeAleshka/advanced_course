@@ -6,7 +6,6 @@ import {Button, ButtonTheme} from 'shared/ui/Button/Button';
 import {LoginModal} from 'features/AuthByUserName';
 import {useDispatch, useSelector} from 'react-redux';
 import {getUserAuthData, userActions} from 'entities/User';
-import {loginActions} from 'features/AuthByUserName';
 
 type NavBarProps = {
 	className?: string[];
@@ -16,15 +15,16 @@ export const NavBar = ({className}: NavBarProps) => {
 	const {t} = useTranslation();
 	const [isOpen, setIsOpen] = useState(false);
 	const authData = useSelector(getUserAuthData);
-	const closeModal = () => {
-		setIsOpen(false);
-	};
-
 	const dispatch = useDispatch();
-	const onLogOut = useCallback(() => {
-		dispatch(loginActions.clearLoginData());
+
+	const closeModal = useCallback(() => {
+		setIsOpen(false);
+	}, []);
+
+	const onLogOut = () => {
+		closeModal();
 		dispatch(userActions.logOut());
-	}, [dispatch]);
+	};
 
 	if (authData) {
 		return (
