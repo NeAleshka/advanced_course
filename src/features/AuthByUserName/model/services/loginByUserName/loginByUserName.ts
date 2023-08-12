@@ -12,6 +12,10 @@ export const loginByUsername = createAsyncThunk<User, LoginRequest, {rejectValue
 	async (authData, {rejectWithValue, dispatch}) => {
 		try {
 			const res = await axios.post<User>('http://localhost:8000/login', authData);
+			if (!res.data) {
+				throw new Error();
+			}
+
 			dispatch(userActions.setUserData(res.data));
 			return res.data;
 		} catch (e) {

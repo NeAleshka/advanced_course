@@ -16,6 +16,7 @@ module.exports = {
 			'@typescript-eslint/prefer-includes': 'off',
 			'@typescript-eslint/no-dynamic-delete': 'off',
 			'@typescript-eslint/ban-ts-comment': 'warn',
+			'@typescript-eslint/no-floating-promises': 'off',
 		},
 	}],
 	parser: '@typescript-eslint/parser',

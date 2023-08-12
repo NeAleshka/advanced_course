@@ -22,7 +22,6 @@ export const NavBar = ({className}: NavBarProps) => {
 	}, []);
 
 	const onLogOut = () => {
-		closeModal();
 		dispatch(userActions.logOut());
 	};
 

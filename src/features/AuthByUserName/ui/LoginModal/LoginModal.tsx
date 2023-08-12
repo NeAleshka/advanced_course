@@ -1,11 +1,13 @@
 import {classNames} from 'shared/lib/classNames';
-import {Modal, type ModalProps} from 'shared/ui/Modal/Modal';
+import {Modal} from 'shared/ui/Modal/Modal';
 import {LoginFormAsync} from 'features/AuthByUserName/ui/LoginForm/LoginForm.async';
 import {Suspense} from 'react';
 import {Loader} from 'widgets/Loader/Loader';
 
-interface LoginModalProps extends Pick<ModalProps, 'isOpen' | 'onClose'> {
+interface LoginModalProps {
 	className?: string;
+	isOpen: boolean;
+	onClose: () => void;
 }
 
 export const LoginModal = (props: LoginModalProps) => {
@@ -13,7 +15,7 @@ export const LoginModal = (props: LoginModalProps) => {
 	return (
 		<Modal className={classNames('', {}, [className])} isOpen={isOpen} onClose={onClose}>
 			<Suspense fallback={<Loader/>}>
-				<LoginFormAsync/>
+				<LoginFormAsync onSuccess={onClose}/>
 			</Suspense>
 		</Modal>
 	);
