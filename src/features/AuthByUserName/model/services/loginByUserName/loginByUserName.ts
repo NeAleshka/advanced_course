@@ -17,7 +17,7 @@ export const loginByUsername = createAsyncThunk<User, LoginRequest, ThunkConfig<
 				throw new Error();
 			}
 
-			extra.navigate('about');
+			extra.navigate?.('about');
 			dispatch(userActions.setUserData(res.data));
 			return res.data;
 		} catch (e) {
