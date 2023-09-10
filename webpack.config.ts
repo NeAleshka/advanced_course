@@ -5,7 +5,7 @@ import {type BuildENV} from './configs/webpack/types';
 export default (env: BuildENV) => {
 	const mode = env.mode || 'development';
 	const isDev = mode === 'development';
-
+	const apiUrl = env.apiUrl || 'http://localhost:8000';
 	return buildWebpackConfig({
 		mode,
 		paths: {
@@ -16,5 +16,6 @@ export default (env: BuildENV) => {
 		},
 		port: 3000,
 		isDev,
+		apiUrl,
 	});
 };

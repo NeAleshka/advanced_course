@@ -15,7 +15,7 @@
     "paths": {
       "*": ["./src/*"]
     },
-    "strictNullChecks": true
+    "strictNullChecks": true,
   },
   "ts-node": {
     "compilerOptions": {
@@ -29,5 +29,5 @@
   ],
   "exclude": [
     "node_modules"
-  ]
+  ],
 }

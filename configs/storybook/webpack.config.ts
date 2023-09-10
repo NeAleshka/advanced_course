@@ -1,4 +1,4 @@
-import type webpack from 'webpack';
+import webpack from 'webpack';
 import {type BuildPaths} from '../webpack/types';
 import path from 'path';
 import buildCssLoader from '../webpack/loaders/buildCssLoader';
@@ -27,6 +27,10 @@ export default ({config}: {config: webpack.Configuration}) => {
 			issuer: /\.[jt]sx?$/,
 			use: ['@svgr/webpack'],
 		});
+		config.plugins?.push(new webpack.DefinePlugin({
+			__IS__DEV__: JSON.stringify(true),
+			__API__: JSON.stringify(''),
+		}));
 	}
 
 	return config;

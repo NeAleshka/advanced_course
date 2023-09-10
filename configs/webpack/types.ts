@@ -12,9 +12,11 @@ export type BuildOptions = {
 	paths: BuildPaths;
 	port: number;
 	isDev: boolean;
+	apiUrl: string;
 };
 
 export type BuildENV = {
 	port: number;
 	mode: BuildMode;
+	apiUrl: string;
 };
