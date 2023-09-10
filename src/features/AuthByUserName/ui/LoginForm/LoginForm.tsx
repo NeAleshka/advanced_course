@@ -2,7 +2,7 @@ import {useTranslation} from 'react-i18next';
 import {useSelector} from 'react-redux';
 import {getLoginError, getLoginLoading, getLoginPassword, getLoginUserName} from '../../model/selectors';
 import {memo, useCallback} from 'react';
-import {Loader, LoaderTheme} from 'widgets/Loader/Loader';
+import {Loader, LoaderTheme} from 'widgets/Loader';
 import {Input} from 'shared/ui/Input/Input';
 import {classNames} from 'shared/lib/classNames';
 import {Button, ButtonTheme} from 'shared/ui/Button/Button';
@@ -65,7 +65,7 @@ const LoginForm = memo(({className = '', onSuccess}: LoginFormProps) => {
 						/>
 						<Button theme={ButtonTheme.INVERTEDCLEAR}
 							onClick={() => {
-								sendAuthData();
+								sendAuthData().then();
 							}}
 						>{t('Sing Up')}</Button>
 					</>

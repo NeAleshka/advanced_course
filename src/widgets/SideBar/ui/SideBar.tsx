@@ -1,25 +1,25 @@
 import cls from './SideBar.module.scss';
 import {classNames} from 'shared/lib/classNames/classNames';
-import {useState} from 'react';
+import {memo, useMemo, useState} from 'react';
 import {ThemeSwitcher} from 'shared/ui/ThemeSwitcher';
 import {LangSwitcher} from 'shared/ui/LangSwitcher';
 import {Button, ButtonSizes, ButtonTheme} from 'shared/ui/Button/Button';
-import AppLink, {AppLinkTheme} from 'shared/ui/AppLink/AppLink';
-import {RouterPath} from 'shared/config/routerConfig/routerConfig';
-import {HomeIcon, ListIcon} from 'shared/assets/icons';
-import {t} from 'i18next';
+import {SideBarItemList} from 'widgets/SideBar/model/items';
+import {SideBarItem} from 'widgets/SideBar/ui/SideBarItem/SideBarItem';
 
 type SideBarProps = {
 	className?: string;
 };
 
-export const SideBar = (props: SideBarProps) => {
+export const SideBar = memo((props: SideBarProps) => {
 	const {className = ''} = props;
 	const [collapsed, setCollapsed] = useState(true);
 	const toggleCollapsed = () => {
 		setCollapsed(prevState => !prevState);
 	};
 
+	const listItem = useMemo(() => SideBarItemList.map(item =>
+		<SideBarItem item={item} key={item.link} collapsed={collapsed}/>), [collapsed]);
 	return (
 		<div
 			data-testid={'sidebar'}
@@ -28,16 +28,7 @@ export const SideBar = (props: SideBarProps) => {
 			])}
 		>
 			<div className={cls.links}>
-				<AppLink theme={AppLinkTheme.PRIMARY} to={RouterPath.main} className={cls.link}>
-					<HomeIcon className={cls.link_icon}/>
-					<span className={cls.link_name}>{t('main_page')}</span>
-				</AppLink>
-
-				<AppLink className={cls.link} theme={AppLinkTheme.PRIMARY} to={RouterPath.about}>
-					<ListIcon className={cls.link_icon} width={25}/>
-					<span className={cls.link_name}>{t('about_page')}</span>
-				</AppLink>
-
+				{listItem}
 			</div>
 
 			<Button square={true} className={cls.collapsedBtn} onClick={toggleCollapsed}
@@ -50,4 +41,4 @@ export const SideBar = (props: SideBarProps) => {
 			</div>
 		</div>
 	);
-};
+});

@@ -11,9 +11,10 @@ type EntriesReducersList = [name: StoreReducerKey, reducer: Reducer];
 interface DynamicModuleLoaderProps {
 	asyncReducers: ReducersList;
 	children: ReactNode;
+	removeAfterUnmount?: boolean;
 }
 export const DynamicModuleLoader = (props: DynamicModuleLoaderProps) => {
-	const {children, asyncReducers} = props;
+	const {children, asyncReducers, removeAfterUnmount = false} = props;
 	const store = useStore() as AppReduxStore;
 	const dispatch = useDispatch();
 
@@ -24,10 +25,12 @@ export const DynamicModuleLoader = (props: DynamicModuleLoaderProps) => {
 		});
 
 		return () => {
-			Object.entries(asyncReducers).forEach(([name]: EntriesReducersList) => {
-				store.reducerManager.remove('loginForm');
-				dispatch({type: `@DESTROY ${name} reducer`});
-			});
+			if (removeAfterUnmount) {
+				Object.entries(asyncReducers).forEach(([name]: EntriesReducersList) => {
+					store.reducerManager.remove(name);
+					dispatch({type: `@DESTROY ${name} reducer`});
+				});
+			}
 		};
 	}, []);
 	return (
