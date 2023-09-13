@@ -7,7 +7,7 @@ export type ReducersList = {
 	[name in StoreReducerKey]?: Reducer
 };
 
-type EntriesReducersList = [name: StoreReducerKey, reducer: Reducer];
+// type EntriesReducersList = [name: StoreReducerKey, reducer: Reducer];
 interface DynamicModuleLoaderProps {
 	asyncReducers: ReducersList;
 	children: ReactNode;
@@ -19,19 +19,20 @@ export const DynamicModuleLoader = (props: DynamicModuleLoaderProps) => {
 	const dispatch = useDispatch();
 
 	useEffect(() => {
-		Object.entries(asyncReducers).forEach(([name, reducer]: EntriesReducersList) => {
-			store.reducerManager.add(name, reducer);
+		Object.entries(asyncReducers).forEach(([name, reducer]) => {
+			store.reducerManager.add(name as StoreReducerKey, reducer);
 			dispatch({type: `@INIT ${name} reducer`});
 		});
 
 		return () => {
 			if (removeAfterUnmount) {
-				Object.entries(asyncReducers).forEach(([name]: EntriesReducersList) => {
-					store.reducerManager.remove(name);
+				Object.entries(asyncReducers).forEach(([name]) => {
+					store.reducerManager.remove(name as StoreReducerKey);
 					dispatch({type: `@DESTROY ${name} reducer`});
 				});
 			}
 		};
+		// eslint-disable-next-line
 	}, []);
 	return (
 		<>
