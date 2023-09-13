@@ -16,7 +16,8 @@ export const createReduxStore = (initialState?: StoreSchema, asyncReducers?: Red
 
 	const store = configureStore({
 		devTools: __IS__DEV__,
-		reducer: reducerManager.reduce,
+		// @ts-expect-error //потом полечим
+		reducer: reducerManager.reduce as ReducersMapObject<StoreSchema>,
 		preloadedState: initialState,
 		middleware: getDefaultMiddleware => getDefaultMiddleware({
 			thunk: {
