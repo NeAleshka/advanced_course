@@ -14,6 +14,7 @@ export default ({config}: {config: webpack.Configuration}) => {
 	if (config.resolve?.modules && config.module?.rules) {
 		config.resolve?.modules?.push(paths.src);
 		config.resolve?.extensions?.push('ts', 'tsx');
+		// @ts-expect-error // потом допилю
 		config.module.rules = config.module.rules.map((rule: RuleSetRule) => {
 			if (rule.test?.toString().includes('svg')) {
 				return {...rule, exclude: /\.svg$/i};
