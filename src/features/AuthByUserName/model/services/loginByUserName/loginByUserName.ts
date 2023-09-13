@@ -14,7 +14,7 @@ export const loginByUsername = createAsyncThunk<User, LoginRequest, ThunkConfig<
 		try {
 			const res = await extra.api.post<User>('/login', authData);
 			if (!res.data) {
-				throw new Error();
+				return rejectWithValue('Failed to load data');
 			}
 
 			dispatch(userActions.setUserData(res.data));
