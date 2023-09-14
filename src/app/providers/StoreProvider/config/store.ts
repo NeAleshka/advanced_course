@@ -29,7 +29,7 @@ export const createReduxStore = (initialState?: StoreSchema, asyncReducers?: Red
 		}),
 	});
 
-	// @ts-expect-error потом доделаю
+	// @ts-expect-error //ПОТОМ ИСПРАВЛЮ
 	store.reducerManager = reducerManager;
 
 	return store;

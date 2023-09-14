@@ -1,13 +1,13 @@
 import {type Country, type Currency} from '../consts';
 
 export interface Profile {
-	first: string;
-	lastname: string;
+	firstName: string;
+	lastName: string;
 	age: number;
 	currency: Currency;
 	country: Country;
 	city: string;
-	username: string;
+	login: string;
 	avatar: string;
 }
 
