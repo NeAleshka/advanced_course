@@ -20,7 +20,7 @@ navigate,
     );
     return (
         <Provider store={store}>
-            <>{children}</>
+            {children}
         </Provider>
     );
 };
