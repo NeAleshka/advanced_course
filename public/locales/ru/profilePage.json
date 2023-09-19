@@ -1,0 +1,12 @@
+{
+    "profile": "Профиль",
+    "userInfo": {
+        "firstName": "Имя",
+        "lastName": "Фамилия",
+        "age": "Возраст",
+        "city": "Город",
+        "currency": "Валюта",
+        "country": "Страна",
+        "login": "Логин"
+    }
+}

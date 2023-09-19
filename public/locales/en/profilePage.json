@@ -1,0 +1,12 @@
+{
+    "profile": "Profile",
+    "userInfo": {
+        "firstName": "First Name",
+        "lastName": "Last Name",
+        "age": "Age",
+        "city": "City",
+        "currency": "Currency",
+        "country": "Country",
+        "login": "Login"
+    }
+}
