@@ -4,4 +4,6 @@ import HomeIcon from './home.svg';
 import ListIcon from './clarity_list.svg';
 import ProfileIcon from './profile-icon.svg';
 
-export {LightThemeIcon, DarkThemeIcon, HomeIcon, ListIcon, ProfileIcon};
+export {
+    LightThemeIcon, DarkThemeIcon, HomeIcon, ListIcon, ProfileIcon,
+};

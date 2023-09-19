@@ -2,25 +2,25 @@
   --font-famile-main: consolas, "Times New Roman", serif;
   --font-size-m: 16px;
   --font-line-m: 24px;
-  --font-m: var(--font-weight) var(--font-size-m) / var(--font-line-m) var(--font-famile-main) ;
+  --font-m: var(--font-weight) var(--font-size-m) / var(--font-line-m) var(--font-famile-main);
   --font-size-l: 24px;
   --font-line-l: 32px;
   --font-l: var(--font-weight) var(--font-size-l) / var(--font-line-l) var(--font-famile-main);
   --font-size-xl: 32px;
   --font-line-xl: 40px;
-  --font-xl: var(--font-weight) var(--font-size-xl) / var(--font-line-xl) var(--font-famile-main) ;
-  --font-weight:600;
+  --font-xl: var(--font-weight) var(--font-size-xl) / var(--font-line-xl) var(--font-famile-main);
+  --font-weight: 600;
 
   // Sizes
   --navbar-height: 50px;
-  --sidebar-width:300px;
-  --sidebar-width-colapsed:80px;
+  --sidebar-width: 300px;
+  --sidebar-width-colapsed: 80px;
 
   // z-indexes
-  --modal-index:10;
+  --modal-index: 10;
 
   // Colors
-  --overlay-bg:rgba(0 0 0 / 60%);
+  --overlay-bg: rgba(0 0 0 / 60%);
   --red-light: #831515;
   --red-dark: #8f1313;
 }

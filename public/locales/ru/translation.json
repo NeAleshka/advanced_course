@@ -5,9 +5,8 @@
   "not_found_page": "Страница не найдена",
   "unexpected error": "Непредвиденная ошибка",
   "reload_page": "Перезагрузить страницу",
-  "short_lang":"Ру",
+  "short_lang": "Ру",
   "Sing Up": "Войти",
   "Authorization": "Авторизация",
-  "Logout": "Выйти",
-  "profile_page": "Профиль"
+  "Logout": "Выйти"
 }

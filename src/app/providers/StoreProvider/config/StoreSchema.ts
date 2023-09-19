@@ -1,17 +1,17 @@
-import {type UserSchema} from 'entities/User';
-import {type LoginSchema} from 'features/AuthByUserName';
+import { type UserSchema } from 'entities/User';
+import { type LoginSchema } from 'features/AuthByUserName';
 import {
-	type AnyAction,
-	type CombinedState,
-	type EnhancedStore,
-	type Reducer,
-	type ReducersMapObject,
+    type AnyAction,
+    type CombinedState,
+    type EnhancedStore,
+    type Reducer,
+    type ReducersMapObject,
 } from '@reduxjs/toolkit';
-import {type ProfileSchema} from 'pages/ProfilePage/model/types';
-import {type AxiosInstance} from 'axios';
-import {type To} from '@remix-run/router';
-import {type NavigateOptions} from 'react-router/dist/lib/context';
-import {type AppDispatchType} from 'app/providers/StoreProvider';
+import { type ProfileSchema } from 'pages/ProfilePage/model/types';
+import { type AxiosInstance } from 'axios';
+import { type To } from '@remix-run/router';
+import { type NavigateOptions } from 'react-router/dist/lib/context';
+import { type AppDispatchType } from 'app/providers/StoreProvider';
 
 export interface StoreSchema {
 	user: UserSchema;

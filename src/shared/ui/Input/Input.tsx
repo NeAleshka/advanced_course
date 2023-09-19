@@ -1,5 +1,5 @@
-import {classNames} from 'shared/lib/classNames';
-import {type ChangeEvent, type InputHTMLAttributes} from 'react';
+import { classNames } from 'shared/lib/classNames';
+import { type ChangeEvent, type InputHTMLAttributes } from 'react';
 
 type HTMLInputProps = Omit<InputHTMLAttributes<HTMLInputElement>, 'value' | 'onChange'>;
 interface InputProps extends HTMLInputProps {
@@ -9,18 +9,25 @@ interface InputProps extends HTMLInputProps {
 }
 
 export const Input = (props: InputProps) => {
-	const {
-		className,
-		value,
-		onChange,
-		type,
-		...restProps
-	}
-		= props;
+    const {
+        className,
+        value,
+        onChange,
+        type,
+        ...restProps
+    }		= props;
 
-	const onChangeHandler = (event: ChangeEvent<HTMLInputElement>) => {
-		onChange?.(event.target.value);
-	};
+    const onChangeHandler = (event: ChangeEvent<HTMLInputElement>) => {
+        onChange?.(event.target.value);
+    };
 
-	return <input className={classNames('', {}, [className])} type={type} value={value} onChange={onChangeHandler} {...restProps}/>;
+    return (
+        <input
+            className={classNames('', {}, [className])}
+            type={type}
+            value={value}
+            onChange={onChangeHandler}
+            {...restProps}
+        />
+    );
 };

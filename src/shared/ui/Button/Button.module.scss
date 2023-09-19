@@ -1,12 +1,12 @@
 .clear,
-.invertedClear{
+.invertedClear {
   padding: 0;
   border: none;
   background: none;
   outline: none;
 }
 
-.invertedClear{
+.invertedClear {
   color: var(--inverted-primary-color);
 }
 
@@ -31,8 +31,6 @@
   color: var(--inverted-primary-color);
   border: none;
 }
-
-
 
 .square {
   padding: 0;

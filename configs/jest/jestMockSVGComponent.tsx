@@ -1,3 +1,3 @@
-const jestMockSVGComponent = () => <div/>;
+const jestMockSVGComponent = () => <div />;
 
 export default jestMockSVGComponent;

@@ -21,24 +21,23 @@
   background-color: var(--inverted--bg-color);
   max-width: 80%;
   max-height: 90%;
-  transition: .3s transform;
+  transition: 0.3s transform;
   transform: scale(0.5);
   color: var(--inverted-primary-color);
 }
 
-.opened{
-  z-index:var(--modal-index);
+.opened {
+  z-index: var(--modal-index);
   opacity: 1;
   pointer-events: auto;
 
-  .content{
+  .content {
     transform: scale(1);
   }
 }
 
-.closed{
-  .content{
+.closed {
+  .content {
     transform: scale(0.2);
-
   }
 }

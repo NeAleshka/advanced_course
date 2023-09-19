@@ -1,4 +1,5 @@
-import {type Country, type Currency} from '../consts';
+import { type RegisterOptions } from 'react-hook-form';
+import { type Country, type Currency } from '../consts';
 
 export interface Profile {
 	firstName: string;
@@ -16,4 +17,12 @@ export interface ProfileSchema {
 	error?: string;
 	isLoading: boolean;
 	readonly: boolean;
+}
+
+export type fieldNameType = keyof Profile;
+
+export interface IInputField {
+	fieldName: fieldNameType;
+	options?: RegisterOptions<Profile>;
+
 }

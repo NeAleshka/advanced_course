@@ -1,1 +1,1 @@
-export {Loader, LoaderTheme} from './ui/Loader';
+export { Loader, LoaderTheme } from './ui/Loader';

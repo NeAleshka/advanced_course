@@ -7,12 +7,10 @@
   margin: 0;
   padding: 0;
   box-sizing: border-box;
-
-
 }
 
 .app,
-.app_modal{
+.app_modal {
   font: var(--font-m);
   color: var(--primary-color);
 }
@@ -32,7 +30,7 @@
   padding: 20px;
 }
 
-.full_page_loader{
+.full_page_loader {
   min-height: calc(100vh - var(--navbar-height));
   display: flex;
   justify-content: center;
