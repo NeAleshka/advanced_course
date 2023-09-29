@@ -1,28 +1,22 @@
 import { loginByUsername } from 'features/AuthByUserName/model/services/loginByUserName/loginByUserName';
-import { type Dispatch } from '@reduxjs/toolkit';
-import { type StoreSchema } from 'app/providers/StoreProvider';
 import axios from 'axios';
-import { type ThunkExtraArg } from 'app/providers/StoreProvider/config/StoreSchema';
+import { TestAsyncThunk } from 'shared/lib/tests/TestAsyncThunk';
+import { userActions } from 'entities/User';
 
 jest.mock('axios');
 
 const mockedAxios = jest.mocked(axios, true);
 describe('loginByUserName test', () => {
-    let dispatch: Dispatch;
-    let getState: () => StoreSchema;
-    let extra: ThunkExtraArg;
-
-    beforeEach(() => {
-        dispatch = jest.fn();
-        getState = jest.fn();
-    });
-
     test('success login', async () => {
-        console.log(mockedAxios);
         const userValue = { username: '123', id: '1' };
-        mockedAxios.post.mockReturnValue(Promise.resolve({ data: userValue }));
-        const action = loginByUsername({ username: '123', password: '1' });
-        const result = await action(dispatch, getState, extra);
-        console.log(result);
+        const thunk = new TestAsyncThunk(loginByUsername);
+        thunk.api.post.mockReturnValue(Promise.resolve({ data: userValue }));
+        const res = await thunk.callThunk({ username: '123', password: '123' });
+
+        expect(thunk.dispatch).toHaveBeenCalledTimes(3);
+        expect(mockedAxios.post).toHaveBeenCalled();
+        expect(res.payload).toEqual(userValue);
+        expect(res.meta.requestStatus).toBe('fulfilled');
+        expect(thunk.dispatch).toHaveBeenCalledWith(userActions.setUserData(userValue));
     });
 });

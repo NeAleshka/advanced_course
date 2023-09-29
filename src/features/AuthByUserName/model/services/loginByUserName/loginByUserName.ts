@@ -14,7 +14,6 @@ export const loginByUsername = createAsyncThunk<User, LoginRequest, ThunkConfig<
             if (!res.data) {
                 return rejectWithValue('Failed to load data');
             }
-
             dispatch(userActions.setUserData(res.data));
             return res.data;
         } catch (e) {
