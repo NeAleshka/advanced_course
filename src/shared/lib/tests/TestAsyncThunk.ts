@@ -34,7 +34,6 @@ export class TestAsyncThunk<Returned, Arg, RejectedValue> {
 
     async callThunk(arg:Arg) {
         const action = this.actionCreator(arg);
-        const res = await action(this.dispatch, this.getState, this.extra);
-        return res;
+        return action(this.dispatch, this.getState, this.extra);
     }
 }

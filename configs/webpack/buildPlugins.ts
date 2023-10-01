@@ -5,7 +5,9 @@ import ReactRefreshWebpackPlugin from '@pmmmwh/react-refresh-webpack-plugin';
 import { BundleAnalyzerPlugin } from 'webpack-bundle-analyzer';
 import { type BuildOptions } from './types';
 
-export function buildPlugins({ paths, isDev, apiUrl }: BuildOptions): WebpackPluginInstance[] {
+export function buildPlugins({
+    paths, isDev, apiUrl, project,
+}: BuildOptions): WebpackPluginInstance[] {
     const plugins = [
         new HtmlWebpackPlugin({
             template: paths.html,
@@ -18,6 +20,7 @@ export function buildPlugins({ paths, isDev, apiUrl }: BuildOptions): WebpackPlu
         new webpack.DefinePlugin({
             __IS__DEV__: JSON.stringify(isDev),
             __API__: JSON.stringify(apiUrl),
+            __PROJECT__: JSON.stringify(project),
         }),
     ];
 

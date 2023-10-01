@@ -13,6 +13,7 @@ export type BuildOptions = {
 	port: number;
 	isDev: boolean;
 	apiUrl: string;
+	project:'dev'|'storybook'|'jest'
 };
 
 export type BuildENV = {

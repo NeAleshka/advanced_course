@@ -16,3 +16,4 @@ declare module 'src/assets/icons/*.svg' {
 
 declare const __IS__DEV__: boolean;
 declare const __API__: string;
+declare const __PROJECT__:string;

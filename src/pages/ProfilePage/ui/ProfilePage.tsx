@@ -3,7 +3,9 @@ import { useTranslation } from 'react-i18next';
 import { DynamicModuleLoader, type ReducersList } from 'shared/lib/components/DynamicModuleLoader';
 import { profileReducers } from 'pages/ProfilePage';
 import { useSelector } from 'react-redux';
-import { fetchProfileData, getLoading, getProfileData } from 'entities/Profile';
+import {
+    fetchProfileData, getLoading, getProfileData, getProfileError,
+} from 'entities/Profile';
 import React, { type ChangeEvent, useEffect, useState } from 'react';
 import { useAppDispatch } from 'shared/lib/hooks';
 import { Loader } from 'widgets/Loader';
@@ -25,6 +27,7 @@ const ProfilePage = () => {
     const { t } = useTranslation('profilePage');
     const profileData = useSelector(getProfileData);
     const isLoading = useSelector(getLoading);
+    const error = useSelector(getProfileError);
     const dispatch = useAppDispatch();
     const [readOnly, setReadOnly] = useState(true);
     const [isFormDirty, setIsFormDirty] = useState(false);
@@ -34,7 +37,9 @@ const ProfilePage = () => {
     } = useForm<Profile>({ mode: 'onChange' });
 
     useEffect(() => {
-        dispatch(fetchProfileData());
+        if (__PROJECT__ !== 'storybook') {
+            dispatch(fetchProfileData());
+        }
     }, [dispatch]);
 
     useEffect(() => {
@@ -75,8 +80,12 @@ const ProfilePage = () => {
     const inputMods = {
         [classes.disabled]: readOnly,
     };
+    if (error) {
+        return <div>Произошла ошибка</div>;
+    }
+
     return (
-        <DynamicModuleLoader asyncReducers={reducers} removeAfterUnmount>
+        <DynamicModuleLoader asyncReducers={reducers}>
             <div className={classes.wrapper}>
                 <div className={classes.title}>{t('profile')}</div>
                 {
@@ -179,7 +188,6 @@ const ProfilePage = () => {
                                             )
                                     }
                                 </div>
-
                             </form>
                         </>
                     )

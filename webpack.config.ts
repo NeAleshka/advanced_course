@@ -17,5 +17,6 @@ export default (env: BuildENV) => {
         port: 3000,
         isDev,
         apiUrl,
+        project: 'dev',
     });
 };
