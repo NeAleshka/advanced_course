@@ -1,27 +1,31 @@
-import { Suspense } from 'react';
+import { Suspense, useCallback } from 'react';
 import { Route, Routes } from 'react-router-dom';
-import { routerConfig } from 'shared/config/routerConfig/routerConfig';
+import { AppRouterProps, routerConfig } from 'shared/config/routerConfig/routerConfig';
 import { FullPageLoader } from 'app/App';
+import { RequireAuth } from 'app/providers/router/ui/RequireAuth';
 
-const AppRouter = () => (
-    <Suspense fallback={<FullPageLoader />}>
+const AppRouter = () => {
+    const renderWithAuth = useCallback((route:AppRouterProps) => {
+        const element = (
+            <Suspense fallback={<FullPageLoader />}>
+                <div className="page-wrapper">
+                    {route.element}
+                </div>
+            </Suspense>
+        );
+        return (
+            <Route
+                key={route.path}
+                path={route.path}
+                element={route.authOnly ? <RequireAuth>{element}</RequireAuth> : element}
+            />
+        );
+    }, []);
+    return (
         <Routes>
-            {
-                Object.values(routerConfig)
-                    .map(({ path, element }) => (
-                        <Route
-                            path={path}
-                            element={(
-                                <div className="page-wrapper">
-                                    {element}
-                                </div>
-                            )}
-                            key={path}
-                        />
-                    ))
-            }
+            { Object.values(routerConfig).map(renderWithAuth) }
         </Routes>
-    </Suspense>
-);
+    );
+};
 
 export default AppRouter;

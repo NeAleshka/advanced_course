@@ -8,6 +8,7 @@ export interface ISideBarItem {
 	Icon: React.VFC<React.SVGProps<SVGSVGElement>>;
 	text: string;
 	theme?: AppLinkTheme;
+    authOnly?: boolean;
 }
 
 export const SideBarItemList: ISideBarItem[] = [
@@ -22,6 +23,7 @@ export const SideBarItemList: ISideBarItem[] = [
         link: RouterPath.profile,
         text: 'profile_page',
         theme: AppLinkTheme.SECONDARY,
+        authOnly: true,
     },
     {
         Icon: ListIcon,

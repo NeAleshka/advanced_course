@@ -6,8 +6,9 @@ import './styles/index.scss';
 import { SideBar } from 'widgets/SideBar';
 import { Suspense, useEffect } from 'react';
 import { Loader } from 'widgets/Loader';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { userActions } from 'entities/User';
+import { getUserInited } from 'entities/User/selectors/getUserAuthData';
 
 export const FullPageLoader = () => (
     <div className="full_page_loader">
@@ -17,6 +18,7 @@ export const FullPageLoader = () => (
 const App = () => {
     const { theme } = useTheme();
     const dispatch = useDispatch();
+    const inited = useSelector(getUserInited);
 
     useEffect(() => {
         dispatch(userActions.initialUser());
@@ -28,7 +30,7 @@ const App = () => {
                 <NavBar />
                 <div className="content-page">
                     <SideBar />
-                    <AppRouter />
+                    {inited && <AppRouter />}
                 </div>
             </Suspense>
         </div>
