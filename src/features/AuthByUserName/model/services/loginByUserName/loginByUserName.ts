@@ -2,6 +2,7 @@ import { createAsyncThunk } from '@reduxjs/toolkit';
 import { type User, userActions } from 'entities/User';
 import axios, { type AxiosError } from 'axios';
 import { type ThunkConfig } from 'app/providers/StoreProvider';
+import { LS_USER_AUTH } from 'shared/consts';
 
 interface LoginRequest {username: string;password: string;
 }
@@ -10,11 +11,15 @@ export const loginByUsername = createAsyncThunk<User, LoginRequest, ThunkConfig<
     'loginByUsername',
     async (authData, { rejectWithValue, dispatch, extra }) => {
         try {
-            const res = await extra.api.post<User>('http://localhost:8000/login', authData);
+            const res = await extra.api.post<User>('/login', authData);
             if (!res.data) {
                 return rejectWithValue('Failed to load data');
             }
+            localStorage.setItem(LS_USER_AUTH, JSON.stringify(res.data));
             dispatch(userActions.setUserData(res.data));
+            if (extra.navigate) {
+                extra.navigate('/profile');
+            }
             return res.data;
         } catch (e) {
             if (axios.isAxiosError(e)) {

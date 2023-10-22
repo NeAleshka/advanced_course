@@ -4,7 +4,7 @@ import { AppRouter } from 'app/providers/router';
 import { NavBar } from 'widgets/NavBar';
 import './styles/index.scss';
 import { SideBar } from 'widgets/SideBar';
-import { Suspense, useEffect } from 'react';
+import { memo, Suspense, useEffect } from 'react';
 import { Loader } from 'widgets/Loader';
 import { useDispatch, useSelector } from 'react-redux';
 import { userActions } from 'entities/User';
@@ -37,4 +37,4 @@ const App = () => {
     );
 };
 
-export default App;
+export default memo(App);

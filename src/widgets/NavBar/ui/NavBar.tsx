@@ -8,10 +8,11 @@ import { getUserAuthData, userActions } from 'entities/User';
 import classes from './NavBar.module.scss';
 
 type NavBarProps = {
-	className?: string[];
+	className?: string;
 };
 
-export const NavBar = memo(({ className }: NavBarProps) => {
+export const NavBar = memo((props: NavBarProps) => {
+    const { className = '' } = props;
     const { t } = useTranslation();
     const [isOpen, setIsOpen] = useState(false);
     const authData = useSelector(getUserAuthData);
@@ -21,13 +22,13 @@ export const NavBar = memo(({ className }: NavBarProps) => {
         setIsOpen(false);
     }, []);
 
-    const onLogOut = () => {
+    const onLogOut = useCallback(() => {
         dispatch(userActions.logOut());
-    };
+    }, [dispatch]);
 
     if (authData) {
         return (
-            <div className={classNames(`${classes.navBar}`, {}, className)}>
+            <div className={classNames(`${classes.navBar}`, {}, [className])}>
                 <div className={classNames(`${classes.links}`)}>
                     <Button theme={ButtonTheme.INVERTEDCLEAR} onClick={onLogOut}>{t('Logout')}</Button>
                 </div>
@@ -36,7 +37,7 @@ export const NavBar = memo(({ className }: NavBarProps) => {
     }
 
     return (
-        <div className={classNames(`${classes.navBar}`, {}, className)}>
+        <div className={classNames(`${classes.navBar}`, {}, [className])}>
             <div className={classNames(`${classes.links}`)}>
                 {isOpen && <LoginModal isOpen={isOpen} onClose={closeModal} />}
                 <Button

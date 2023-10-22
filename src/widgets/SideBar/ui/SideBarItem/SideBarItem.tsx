@@ -25,6 +25,7 @@ export const SideBarItem = ({ className = '', item, collapsed }: SideBarItemProp
             className={classNames(`${cls.link} ${className}`, { [cls.collapsed]: collapsed })}
             theme={item.theme}
             to={item.link}
+            title={t(`${item.text}`)}
         >
             <item.Icon className={cls.link_icon} width={25} />
             <span className={cls.link_name}>{t(item.text)}</span>
