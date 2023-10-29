@@ -13,12 +13,14 @@ import { type To } from '@remix-run/router';
 import { type NavigateOptions } from 'react-router/dist/lib/context';
 import { type AppDispatchType } from 'app/providers/StoreProvider';
 import { ArticleDetailsSchema } from 'entities/Article/types/article';
+import { ArticlesStateSchema } from 'pages/ArticlePage/model/types';
 
 export interface StoreSchema {
 	user: UserSchema;
 	loginForm?: LoginSchema;
 	profile?: ProfileSchema;
-	articleDetails?:ArticleDetailsSchema
+	articleDetails?:ArticleDetailsSchema;
+	articles?:ArticlesStateSchema
 }
 
 export type StoreReducerKey = keyof StoreSchema;
