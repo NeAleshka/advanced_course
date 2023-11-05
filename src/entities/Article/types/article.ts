@@ -9,24 +9,24 @@ export interface ArticleBlockBase {
     type: ArticleBlockType
 }
 
-export interface ArticleTextBlock extends ArticleBlockBase {
+export interface IArticleTextBlock extends ArticleBlockBase {
     type: ArticleBlockType.TEXT
     title: string
     paragraphs:string[]
 }
 
-export interface ArticleCodeBlock extends ArticleBlockBase {
+export interface IArticleCodeBlock extends ArticleBlockBase {
     type: ArticleBlockType.CODE
     code:string
 }
 
-export interface ArticleImageBlock extends ArticleBlockBase {
+export interface IArticleImageBlock extends ArticleBlockBase {
     type: ArticleBlockType.IMAGE
     src:string
     title?:string
 }
 
-export type ArticleBlock =ArticleTextBlock| ArticleCodeBlock |ArticleImageBlock
+export type ArticleBlock =IArticleTextBlock| IArticleCodeBlock |IArticleImageBlock
 
 export enum ArticleType {
     IT = 'IT',
@@ -40,7 +40,7 @@ export interface Article {
     subtitle: string
     img: string
     views: number
-    createAt: string
+    createdAt: string
     type: ArticleType[]
     blocks: ArticleBlock[]
 }

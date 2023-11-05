@@ -1,5 +1,7 @@
 .Article {
-
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 
 .skeletonItem {
@@ -8,4 +10,29 @@
 
 .skeletonAvatar {
   margin: 0 auto 10px;
+}
+
+.avatar {
+  width: 200px;
+  height: 200px;
+}
+
+.infoWrap {
+  display: flex;
+  align-items: center;
+  width: fit-content;
+}
+
+.viewsIcon {
+  margin-right: 10px;
+  height: 20px;
+}
+
+.textArticleWrap {
+  width: 100%;
+  text-align: start;
+}
+
+.articleBlock {
+  margin-top: 16px;
 }

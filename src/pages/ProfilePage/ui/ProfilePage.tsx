@@ -1,4 +1,3 @@
-import { classNames } from 'shared/lib/classNames';
 import { useTranslation } from 'react-i18next';
 import { DynamicModuleLoader, type ReducersList } from 'shared/lib/components/DynamicModuleLoader';
 import { profileReducers } from 'pages/ProfilePage';
@@ -6,13 +5,14 @@ import { useSelector } from 'react-redux';
 import {
     fetchProfileData, getLoading, getProfileData, getProfileError,
 } from 'entities/Profile';
-import React, { type ChangeEvent, useEffect, useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useAppDispatch } from 'shared/lib/hooks';
 import { Loader } from 'widgets/Loader';
 import { Controller, useForm } from 'react-hook-form';
 import { Button, ButtonTheme } from 'shared/ui/Button/Button';
 import { Country, Currency } from 'pages/ProfilePage/model/consts';
 import { updateProfileData } from 'entities/Profile/model/services/updateProfileData';
+import { Input } from 'shared/ui/Input/Input';
 import classes from './ProfilePage.module.scss';
 import { type Profile } from '../model/types';
 import { inputFieldsArray } from './fieldsArray';
@@ -30,10 +30,9 @@ const ProfilePage = () => {
     const error = useSelector(getProfileError);
     const dispatch = useAppDispatch();
     const [readOnly, setReadOnly] = useState(true);
-    const [isFormDirty, setIsFormDirty] = useState(false);
 
     const {
-        register, handleSubmit, formState: { errors, isValid }, setValue, control, reset,
+        handleSubmit, formState: { errors, isValid, dirtyFields }, setValue, control, reset,
     } = useForm<Profile>({ mode: 'onChange' });
 
     useEffect(() => {
@@ -45,7 +44,7 @@ const ProfilePage = () => {
     useEffect(() => {
         if (profileData) {
             Object.keys(profileData).forEach((field) => {
-                setValue(field as profileDataKeys, profileData[field as profileDataKeys]);
+                setValue(field as profileDataKeys, profileData[field as profileDataKeys], { shouldDirty: false });
             });
         }
     }, [profileData, setValue]);
@@ -62,23 +61,7 @@ const ProfilePage = () => {
 
     const onSubmit = (data: Profile) => {
         setReadOnly(true);
-        setIsFormDirty(false);
         dispatch(updateProfileData(data));
-    };
-
-    const handleInputChange = () => {
-        if (!isFormDirty) {
-            setIsFormDirty(true);
-        }
-    };
-
-    const handleSelectChange = (event: ChangeEvent<HTMLSelectElement>, fieldName: profileDataKeys) => {
-        setIsFormDirty(true);
-        setValue(fieldName, event.currentTarget.value);
-    };
-
-    const inputMods = {
-        [classes.disabled]: readOnly,
     };
     if (error) {
         return <div>Произошла ошибка</div>;
@@ -99,14 +82,20 @@ const ProfilePage = () => {
                                                 <span style={{ marginRight: '10px' }}>
                                                     {t(`userInfo.${fieldName}`)}
                                                 </span>
-                                                <input
-                                                    defaultValue={profileData?.[fieldName]}
-                                                    className={classNames('', inputMods)}
-                                                    {...register(fieldName, { ...options })}
-                                                    disabled={readOnly}
-                                                    onChange={handleInputChange}
+                                                <Controller
+                                                    control={control}
+                                                    rules={{ ...options }}
+                                                    render={
+                                                        ({ field: { onChange } }) => (
+                                                            <Input
+                                                                onChange={onChange}
+                                                                defaultValue={profileData?.[fieldName]}
+                                                                disabled={readOnly}
+                                                            />
+                                                        )
+                                                    }
+                                                    name={fieldName}
                                                 />
-
                                             </div>
                                             {errors[fieldName] && <div>{errors[fieldName]?.message}</div>}
                                         </div>
@@ -118,12 +107,10 @@ const ProfilePage = () => {
 
                                         <Controller
                                             control={control}
-                                            render={({ field: { value } }) => (
+                                            render={({ field: { value, onChange } }) => (
                                                 <select
                                                     value={value}
-                                                    onChange={(event) => {
-                                                        handleSelectChange(event, 'country');
-                                                    }}
+                                                    onChange={onChange}
                                                     style={{ width: '100%' }}
                                                     disabled={readOnly}
                                                 >
@@ -145,7 +132,6 @@ const ProfilePage = () => {
                                         <Controller
                                             control={control}
                                             disabled={readOnly}
-                                            defaultValue={profileData?.currency}
                                             render={({ field }) => (
                                                 <select {...field} style={{ width: '100%' }}>
                                                     {Object.values(Currency).map((item) => (
@@ -179,7 +165,7 @@ const ProfilePage = () => {
                                             : (
                                                 <>
                                                     <Button onClick={cancelChanges}>Отменить</Button>
-                                                    {isFormDirty && (
+                                                    {!!Object.keys(dirtyFields).length && (
                                                         <Button type="submit" disabled={!isValid}>
                                                             Сохранить
                                                         </Button>

@@ -1,0 +1,14 @@
+.codeBlockWrap {
+  border: 2px solid var(--primary-color);
+  padding: 10px;
+  background-color:#dbd5dc;
+  color: black;
+  position: relative;
+}
+
+.copyBtn {
+  margin-left: auto;
+  position: absolute;
+  right: 10px;
+  top: 5px;
+}

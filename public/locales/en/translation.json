@@ -11,5 +11,8 @@
   "Logout": "Logout",
   "profile_page": "Profile",
   "Статьи": "Статьи",
-  "Article": "Article"
+  "Article": "Article",
+  "views": "Views",
+  "createdAt": "Created at",
+  "copy": "Copy"
 }

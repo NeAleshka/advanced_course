@@ -7,17 +7,23 @@ export enum ThemeText {
 	ERROR = 'error',
 }
 
+export enum TextSize {
+	M='size_m',
+	L='size_l',
+}
+
 interface TextProps {
 	title?: string;
 	text?: string;
 	className?: string;
 	theme?: ThemeText;
+    size?: TextSize;
 }
 
 export const Text = memo(({
-    className = '', text, title, theme = ThemeText.PRIMARY,
+    className = '', text, title, theme = ThemeText.PRIMARY, size = TextSize.M,
 }: TextProps) => (
-    <div className={classNames(cls.Text, {}, [className, cls[theme]])}>
+    <div className={classNames(cls.Text, {}, [className, cls[theme], cls[size]])}>
         {title && <p className={cls.title}>{title}</p>}
         {text && <p className={cls.text}>{text}</p>}
     </div>

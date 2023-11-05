@@ -51,7 +51,7 @@ const ArticlePage = ({ className = '' }:ArticlePageProps) => {
     if (articles?.length) {
         content = (
             <div style={{ display: 'flex', flexDirection: 'column', justifyContent: 'center' }}>
-                {articles?.map(({ id, title }) => <AppLink to={`/article/${id}`}>{title}</AppLink>)}
+                {articles?.map(({ id, title }) => <AppLink key={id} to={`/article/${id}`}>{title}</AppLink>)}
             </div>
         );
     }
