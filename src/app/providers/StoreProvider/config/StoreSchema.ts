@@ -14,13 +14,15 @@ import { type NavigateOptions } from 'react-router/dist/lib/context';
 import { type AppDispatchType } from 'app/providers/StoreProvider';
 import { ArticleDetailsSchema } from 'entities/Article/types/article';
 import { ArticlesStateSchema } from 'pages/ArticlePage/model/types';
+import { UserCommentSchema } from 'entities/Comment';
 
 export interface StoreSchema {
 	user: UserSchema;
 	loginForm?: LoginSchema;
 	profile?: ProfileSchema;
 	articleDetails?:ArticleDetailsSchema;
-	articles?:ArticlesStateSchema
+	articles?:ArticlesStateSchema;
+	userComments?:UserCommentSchema
 }
 
 export type StoreReducerKey = keyof StoreSchema;

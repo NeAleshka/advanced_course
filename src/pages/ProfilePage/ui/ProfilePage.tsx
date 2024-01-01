@@ -68,7 +68,7 @@ const ProfilePage = () => {
     }
 
     return (
-        <DynamicModuleLoader asyncReducers={reducers}>
+        <DynamicModuleLoader asyncReducers={reducers} removeAfterUnmount={false}>
             <div className={classes.wrapper}>
                 <div className={classes.title}>{t('profile')}</div>
                 {

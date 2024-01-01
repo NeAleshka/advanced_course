@@ -20,17 +20,19 @@ import { articleReducers } from '../model/slice';
 const reducers:ReducersList = {
     articleDetails: articleReducers,
 };
-const ArticleDetails = () => {
-    const { id: articleId } = useParams();
+
+interface ArticleDetailsProps {
+    id: string;
+}
+const ArticleDetails = ({ id }:ArticleDetailsProps) => {
     const dispatch = useAppDispatch();
     const article = useSelector(getArticleData);
     const error = useSelector(getArticleError);
     const isLoading = useSelector(getArticleLoading);
     const { t } = useTranslation();
-
     useEffect(() => {
-        dispatch(fetchArticlesById(articleId || '1'));
-    }, [articleId, dispatch]);
+        dispatch(fetchArticlesById(id || ''));
+    }, [id, dispatch]);
 
     let content;
 
@@ -88,7 +90,6 @@ const ArticleDetails = () => {
                         <Text text={`${article.createdAt}`} />
                     </div>
                     {
-                        // eslint-disable-next-line react/no-array-index-key
                         article.blocks.map(renderBlock)
                     }
                 </div>
@@ -96,8 +97,7 @@ const ArticleDetails = () => {
         );
     }
     return (
-        <DynamicModuleLoader asyncReducers={reducers} removeAfterUnmount>
-
+        <DynamicModuleLoader asyncReducers={reducers}>
             <div>
                 {content}
             </div>

@@ -57,7 +57,7 @@ const ArticlePage = ({ className = '' }:ArticlePageProps) => {
     }
 
     return (
-        <DynamicModuleLoader asyncReducers={reducers} removeAfterUnmount>
+        <DynamicModuleLoader asyncReducers={reducers}>
             <div
                 className={classNames(cls.Article, {}, [className])}
                 style={{ display: 'flex', alignItems: 'center', flexDirection: 'column' }}
