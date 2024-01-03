@@ -7,6 +7,10 @@ import { getUserCommentsLoading } from 'entities/Comment/model/selectors';
 import CommentList from 'entities/Comment/ui/CommentList';
 import { memo, useEffect } from 'react';
 import { fetchUserCommentsById } from 'entities/Comment/model/services';
+import { Text } from 'shared/ui/Text/Text';
+import AddCommentForm from 'features/addComment/ui/addCommentForm';
+import { getAddCommentFormText } from 'features/addComment/model/selectors';
+import { addArticleComment } from 'entities/Article/model/services';
 
 const ArticleDetailsPage = () => {
     const { t } = useTranslation();
@@ -14,11 +18,17 @@ const ArticleDetailsPage = () => {
     const dispatch = useDispatch();
     const userComments = useSelector(getUserComments.selectAll);
     const articleCommentsLoading = useSelector(getUserCommentsLoading);
+    const newComment = useSelector(getAddCommentFormText);
+
     useEffect(() => {
         if (__PROJECT__ !== 'storybook') {
             dispatch(fetchUserCommentsById(id || ''));
         }
     }, [dispatch, id]);
+
+    const sendArticleComment = () => {
+        dispatch(addArticleComment(newComment || ''));
+    };
 
     if (!id) {
         return (
@@ -30,6 +40,8 @@ const ArticleDetailsPage = () => {
     return (
         <>
             <ArticleDetails id={id} />
+            <Text title={t('comments')} />
+            <AddCommentForm sendComment={sendArticleComment} />
             <CommentList comments={userComments} isLoading={articleCommentsLoading} />
         </>
     );

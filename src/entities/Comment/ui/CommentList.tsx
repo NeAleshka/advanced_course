@@ -18,7 +18,6 @@ const reducers:ReducersList = {
 };
 const CommentList = ({ comments, isLoading }:Props) => {
     const { t } = useTranslation();
-
     const mockContent = (
         isLoading ? <Skeleton className={cls.skeletonItem} width="100%" height={50} />
             : <Text title={t('noComments')} />
@@ -26,8 +25,8 @@ const CommentList = ({ comments, isLoading }:Props) => {
 
     return (
         <DynamicModuleLoader asyncReducers={reducers}>
-            {comments?.length
-                ? comments.map((comment) => <CommentCard comment={comment} isLoading={isLoading} key={comment.id} />)
+            {comments?.length && !isLoading
+                ? comments.map((comment) => <CommentCard comment={comment} key={comment.id} />)
                 : mockContent}
         </DynamicModuleLoader>
     );

@@ -15,6 +15,7 @@ import { type AppDispatchType } from 'app/providers/StoreProvider';
 import { ArticleDetailsSchema } from 'entities/Article/types/article';
 import { ArticlesStateSchema } from 'pages/ArticlePage/model/types';
 import { UserCommentSchema } from 'entities/Comment';
+import { AddCommentSchema } from 'features/addComment';
 
 export interface StoreSchema {
 	user: UserSchema;
@@ -23,6 +24,7 @@ export interface StoreSchema {
 	articleDetails?:ArticleDetailsSchema;
 	articles?:ArticlesStateSchema;
 	userComments?:UserCommentSchema
+	addComment?:AddCommentSchema
 }
 
 export type StoreReducerKey = keyof StoreSchema;
@@ -47,4 +49,5 @@ export interface ThunkConfig<T> {
 	rejectValue: T;
 	extra: ThunkExtraArg;
 	dispatch: AppDispatchType;
+	state: StoreSchema;
 }

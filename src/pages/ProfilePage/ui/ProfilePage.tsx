@@ -13,6 +13,7 @@ import { Button, ButtonTheme } from 'shared/ui/Button/Button';
 import { Country, Currency } from 'pages/ProfilePage/model/consts';
 import { updateProfileData } from 'entities/Profile/model/services/updateProfileData';
 import { Input } from 'shared/ui/Input/Input';
+import { useLocation, useParams } from 'react-router-dom';
 import classes from './ProfilePage.module.scss';
 import { type Profile } from '../model/types';
 import { inputFieldsArray } from './fieldsArray';
@@ -30,6 +31,7 @@ const ProfilePage = () => {
     const error = useSelector(getProfileError);
     const dispatch = useAppDispatch();
     const [readOnly, setReadOnly] = useState(true);
+    const { id } = useParams<{ id: string }>();
 
     const {
         handleSubmit, formState: { errors, isValid, dirtyFields }, setValue, control, reset,
@@ -37,9 +39,9 @@ const ProfilePage = () => {
 
     useEffect(() => {
         if (__PROJECT__ !== 'storybook') {
-            dispatch(fetchProfileData());
+            dispatch(fetchProfileData(id));
         }
-    }, [dispatch]);
+    }, [dispatch, id]);
 
     useEffect(() => {
         if (profileData) {

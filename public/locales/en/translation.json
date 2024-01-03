@@ -15,5 +15,8 @@
   "views": "Views",
   "createdAt": "Created at",
   "copy": "Copy",
-  "noComments": "No comments"
+  "noComments": "No comments",
+  "comments": "Comments",
+  "enterComment": "Enter your comment",
+  "send": "Send"
 }

@@ -228,70 +228,52 @@
   ],
   "comments": [
     {
-      "id": "1",
-      "text": "some comment",
-      "articleId": "1",
-      "userId": "1"
+      "articleId": "2",
+      "userId": "1",
+      "text": "3333",
+      "id": "kqDrrkO"
     },
     {
-      "id": "2",
-      "text": "some comment 2",
-      "articleId": "1",
-      "userId": "1"
+      "articleId": "2",
+      "userId": "1",
+      "text": "2525",
+      "id": "1in7g4P"
     },
     {
-      "id": "3",
-      "text": "some comment 3",
-      "articleId": "1",
-      "userId": "1"
+      "articleId": "2",
+      "userId": "1",
+      "text": "1313",
+      "id": "9fXom8M"
+    },
+    {
+      "articleId": "2",
+      "userId": "1",
+      "text": "1000",
+      "id": "p3NOmmh"
+    },
+    {
+      "articleId": "2",
+      "userId": "1",
+      "text": "9999",
+      "id": "LZWzy4S"
+    },
+    {
+      "articleId": "2",
+      "userId": "1",
+      "text": "4000",
+      "id": "Pcj1Emn"
+    },
+    {
+      "articleId": "2",
+      "userId": "1",
+      "text": "5000",
+      "id": "38-UBT3"
     },
     {
       "articleId": "1",
       "userId": "1",
-      "text": "123",
-      "id": "4Cljjzl"
-    },
-    {
-      "articleId": "1",
-      "userId": "1",
-      "text": "123asfasf",
-      "id": "AEM4Dvc"
-    },
-    {
-      "articleId": "1",
-      "userId": "2",
-      "text": "123asfasf",
-      "id": "IFEOWl0"
-    },
-    {
-      "articleId": "2",
-      "userId": "2",
-      "text": "привет мир",
-      "id": "dBacYRZ"
-    },
-    {
-      "articleId": "1",
-      "userId": "2",
-      "text": "хехехехе",
-      "id": "rBX_C-e"
-    },
-    {
-      "articleId": "1",
-      "userId": "2",
-      "text": "фыафыа",
-      "id": "5k0ApX-"
-    },
-    {
-      "articleId": "1",
-      "userId": "2",
-      "text": "sdfsdfsd",
-      "id": "w-HDIRq"
-    },
-    {
-      "articleId": "2",
-      "userId": "2",
-      "text": "asdasdasd",
-      "id": "MVvGQoZ"
+      "text": "Класс!!!!!",
+      "id": "ck_oMr2"
     }
   ],
   "users": [
@@ -300,7 +282,7 @@
       "username": "admin",
       "password": "123",
       "role": "ADMIN",
-      "avatar": "https://avatars.mds.yandex.net/get-zen_doc/3413519/pub_5ff887b2fe4e686f6ae6ba3f_5ff887d7f906b16872a69755/scale_1200"
+      "avatar": "https://sun9-15.userapi.com/impf/c624317/v624317224/25b6c/yiuhT87wuVk.jpg?size=432x604&quality=96&sign=db7ba783110b31b67cbe5f6601eae427&c_uniq_tag=iY0lYRLlOYwOEhaLvPjiwbXKwWRGzB_mICbw2J49sGk&type=album"
     },
     {
       "id": "2",
@@ -310,13 +292,26 @@
       "avatar": "https://xakep.ru/wp-content/uploads/2018/05/171485/KuroiSH-hacker.jpg"
     }
   ],
-  "profile": {
-    "firstName": "Алекс",
-    "lastName": "Буд",
-    "age": "24",
-    "city": "Дзержинск",
-    "login": "admi",
-    "country": "ПОЛЬША",
-    "avatar": "https://avatars.mds.yandex.net/get-zen_doc/3413519/pub_5ff887b2fe4e686f6ae6ba3f_5ff887d7f906b16872a69755/scale_1200"
-  }
+  "profile": [
+    {
+      "id": "1",
+      "firstName": "Алекс",
+      "lastName": "Буд",
+      "age": "24",
+      "city": "Дзержинск",
+      "login": "admi",
+      "country": "ПОЛЬША",
+      "avatar": "https://avatars.mds.yandex.net/get-zen_doc/3413519/pub_5ff887b2fe4e686f6ae6ba3f_5ff887d7f906b16872a69755/scale_1200"
+    },
+    {
+      "id": "2",
+      "firstName": "Иван",
+      "lastName": "Будай",
+      "age": "24",
+      "city": "Дзержинск",
+      "login": "admi",
+      "country": "ПОЛЬША",
+      "avatar": "https://avatars.mds.yandex.net/get-zen_doc/3413519/pub_5ff887b2fe4e686f6ae6ba3f_5ff887d7f906b16872a69755/scale_1200"
+    }
+  ]
 }
