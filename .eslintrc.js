@@ -53,6 +53,7 @@ module.exports = {
         'no-undef': 'off',
         'no-tabs': 'off',
         'react/jsx-no-useless-fragment': 'off',
+        'linebreak-style': 'off',
     },
     globals: {
         __IS_DEV__: true,
