@@ -12,6 +12,7 @@ const CommentCard = ({ comment }:Props) => {
     const {
         text, user,
     } = comment;
+
     return (
         <div className={styles.comment}>
             <div className={styles.header}>

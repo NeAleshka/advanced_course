@@ -1,5 +1,5 @@
 import { classNames } from 'shared/lib/classNames';
-import { memo } from 'react';
+import { HTMLAttributes, memo } from 'react';
 import cls from './Text.module.scss';
 
 export enum ThemeText {
@@ -12,7 +12,7 @@ export enum TextSize {
 	L='size_l',
 }
 
-interface TextProps {
+interface TextProps extends Omit <HTMLAttributes<HTMLSpanElement>, 'size'|'className'> {
 	title?: string;
 	text?: string;
 	className?: string;
@@ -21,9 +21,9 @@ interface TextProps {
 }
 
 export const Text = memo(({
-    className = '', text, title, theme = ThemeText.PRIMARY, size = TextSize.M,
+    className = '', text, title, theme = ThemeText.PRIMARY, size = TextSize.M, ...restProps
 }: TextProps) => (
-    <div className={classNames(cls.Text, {}, [className, cls[theme], cls[size]])}>
+    <div className={classNames(cls.Text, {}, [className, cls[theme], cls[size]])} {...restProps}>
         {title && <p className={cls.title}>{title}</p>}
         {text && <p className={cls.text}>{text}</p>}
     </div>

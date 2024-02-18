@@ -5,3 +5,8 @@ export interface ArticlesStateSchema {
     error?:string
     isLoading:boolean
 }
+
+export enum ArticlesView {
+    BIG='BIG',
+    SMALL='SMALL'
+}

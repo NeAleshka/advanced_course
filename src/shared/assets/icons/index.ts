@@ -7,7 +7,10 @@ import Article from './post.svg';
 import Views from './eye-20-20.svg';
 import Calendar from './calendar-20-20.svg';
 import CopyIcon from './copy.svg';
+import SmallView from './articlesSmallView.svg';
+import BigView from './articlesBigView.svg';
 
 export {
     LightThemeIcon, DarkThemeIcon, HomeIcon, ListIcon, ProfileIcon, Article, Views, Calendar, CopyIcon,
+    BigView, SmallView,
 };
