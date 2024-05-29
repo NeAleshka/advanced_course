@@ -1,16 +1,25 @@
-import { createSlice } from '@reduxjs/toolkit';
+import { createEntityAdapter, createSlice } from '@reduxjs/toolkit';
 import { ArticlesStateSchema } from 'pages/ArticlePage/model/types';
 import { fetchArticles } from 'pages/ArticlePage/model/services';
+import { Article } from 'entities/Article/types/article';
+import { StoreSchema } from 'app/providers/StoreProvider';
 
-const initialState:ArticlesStateSchema = {
-    data: undefined,
-    error: undefined,
-    isLoading: true,
-};
+const articlesAdapter = createEntityAdapter<Article>({
+    selectId: (article) => article.id,
+});
+
+export const getArticles = articlesAdapter.getSelectors<StoreSchema>(
+    (state) => state.articles || articlesAdapter.getInitialState(),
+);
 
 const articlesSlice = createSlice({
     name: 'articlesSlice',
-    initialState,
+    initialState: articlesAdapter.getInitialState<ArticlesStateSchema>({
+        ids: [],
+        entities: {},
+        isLoading: false,
+        error: undefined,
+    }),
     reducers: {},
     extraReducers: ((builder) => {
         builder.addCase(fetchArticles.pending, (state) => {
@@ -18,7 +27,10 @@ const articlesSlice = createSlice({
         });
         builder.addCase(fetchArticles.fulfilled, (state, { payload }) => {
             state.isLoading = false;
-            state.data = payload;
+            articlesAdapter.setAll(state, payload);
+            if (state.error) {
+                state.error = undefined;
+            }
         });
         builder.addCase(fetchArticles.rejected, (state, { payload }) => {
             state.isLoading = false;

@@ -3,15 +3,16 @@ import { memo, useEffect, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { useAppDispatch } from 'shared/lib/hooks';
 import { useSelector } from 'react-redux';
-import { getAllArticles, getArticlesError, getArticlesLoading } from 'pages/ArticlePage/model/selectors';
+import { getArticlesError, getArticlesLoading } from 'pages/ArticlePage/model/selectors';
 import AppLink from 'shared/ui/AppLink/AppLink';
 import { DynamicModuleLoader, ReducersList } from 'shared/lib/components/DynamicModuleLoader';
-import { articlesReducers } from 'pages/ArticlePage/model/slice';
+import { articlesReducers, getArticles } from 'pages/ArticlePage/model/slice';
 import { Text, ThemeText } from 'shared/ui/Text/Text';
 import { Skeleton } from 'shared/ui/Skeleton/Skeleton';
 import { ArticlesView } from 'pages/ArticlePage/model/types';
 import { BigView, SmallView } from 'shared/assets/icons';
 import { Button } from 'shared/ui/Button/Button';
+import { ArticleViewHandler } from 'features/ArticleViewHandler/ui/ArticleViewHandler';
 import { fetchArticles } from '../model/services';
 import cls from './ArticlePage.module.scss';
 
@@ -31,7 +32,7 @@ const changeViewButtons = {
 const ArticlePage = ({ className = '' }:ArticlePageProps) => {
     const { t } = useTranslation();
     const dispatch = useAppDispatch();
-    const articles = useSelector(getAllArticles);
+    const articles = useSelector(getArticles.selectAll);
     const isLoading = useSelector(getArticlesLoading);
     const error = useSelector(getArticlesError);
 
@@ -95,7 +96,7 @@ const ArticlePage = ({ className = '' }:ArticlePageProps) => {
         );
         }
     }
-    const handleChangeView = () => (view === ArticlesView.SMALL
+    const handleChangeView = (newView: ArticlesView) => (newView === ArticlesView.SMALL
         ? setView(ArticlesView.BIG) : setView(ArticlesView.SMALL));
 
     return (
@@ -110,12 +111,8 @@ const ArticlePage = ({ className = '' }:ArticlePageProps) => {
                 }}
                 >
                     <Text text={t('Article')} style={{ textAlign: 'center', flexGrow: 1 }} />
-                    <Button
-                        square
-                        onClick={handleChangeView}
-                    >
-                        {changeViewButtons[view]}
-                    </Button>
+                    <ArticleViewHandler className="" onViewClick={handleChangeView} view={view} />
+
                 </div>
                 <div style={{ width: '100%' }}>
                     {content}
