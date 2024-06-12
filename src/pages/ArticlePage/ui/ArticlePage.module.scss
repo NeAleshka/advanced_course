@@ -36,3 +36,21 @@
 .articleBlock {
   margin-top: 16px;
 }
+
+.articleBigView {
+display: flex;
+justify-content: center;
+width: 400px;
+flex-direction: column;
+height: 400px;
+background-color: green;
+margin: 10px;
+align-items: center;
+}
+
+.articleWrap  {
+  display: flex;
+  justify-content: space-between;
+  flex-direction: row;
+  flex-wrap: wrap;
+}

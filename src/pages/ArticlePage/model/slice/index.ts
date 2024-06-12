@@ -1,5 +1,5 @@
 import { createEntityAdapter, createSlice } from '@reduxjs/toolkit';
-import { ArticlesStateSchema } from 'pages/ArticlePage/model/types';
+import { ArticlesStateSchema, ArticlesView } from 'pages/ArticlePage/model/types';
 import { fetchArticles } from 'pages/ArticlePage/model/services';
 import { Article } from 'entities/Article/types/article';
 import { StoreSchema } from 'app/providers/StoreProvider';
@@ -19,8 +19,22 @@ const articlesSlice = createSlice({
         entities: {},
         isLoading: false,
         error: undefined,
+        hasMore: true,
+        page: 1,
+        view: localStorage.getItem('view') as ArticlesView || ArticlesView.SMALL,
+        limit: localStorage.getItem('view') as ArticlesView === ArticlesView.SMALL ? 9 : 4,
     }),
-    reducers: {},
+    reducers: {
+
+        setView: (state, { payload }) => {
+            state.view = payload;
+            state.limit = payload === ArticlesView.SMALL ? 9 : 4;
+            localStorage.setItem('view', payload);
+        },
+        setPage: (state, { payload }) => {
+            state.page = payload;
+        },
+    },
     extraReducers: ((builder) => {
         builder.addCase(fetchArticles.pending, (state) => {
             state.isLoading = true;

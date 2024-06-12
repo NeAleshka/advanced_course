@@ -9,4 +9,9 @@ export enum ArticlesView {
 export interface ArticlesStateSchema extends EntityState<Article>{
     error?:string
     isLoading:boolean
+    view:ArticlesView
+    // pagitation
+    page:number
+    limit?:number
+    hasMore:boolean
 }

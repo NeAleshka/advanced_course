@@ -3,7 +3,9 @@ import { memo, useEffect, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { useAppDispatch } from 'shared/lib/hooks';
 import { useSelector } from 'react-redux';
-import { getArticlesError, getArticlesLoading } from 'pages/ArticlePage/model/selectors';
+import {
+    getArticlesError, getArticlesLimit, getArticlesLoading, getArticlesView,
+} from 'pages/ArticlePage/model/selectors';
 import AppLink from 'shared/ui/AppLink/AppLink';
 import { DynamicModuleLoader, ReducersList } from 'shared/lib/components/DynamicModuleLoader';
 import { articlesReducers, getArticles } from 'pages/ArticlePage/model/slice';
@@ -11,7 +13,6 @@ import { Text, ThemeText } from 'shared/ui/Text/Text';
 import { Skeleton } from 'shared/ui/Skeleton/Skeleton';
 import { ArticlesView } from 'pages/ArticlePage/model/types';
 import { BigView, SmallView } from 'shared/assets/icons';
-import { Button } from 'shared/ui/Button/Button';
 import { ArticleViewHandler } from 'features/ArticleViewHandler/ui/ArticleViewHandler';
 import { fetchArticles } from '../model/services';
 import cls from './ArticlePage.module.scss';
@@ -35,22 +36,25 @@ const ArticlePage = ({ className = '' }:ArticlePageProps) => {
     const articles = useSelector(getArticles.selectAll);
     const isLoading = useSelector(getArticlesLoading);
     const error = useSelector(getArticlesError);
+    const view = useSelector(getArticlesView);
+    const limit = useSelector(getArticlesLimit);
 
-    const [view, setView] = useState(ArticlesView.SMALL);
     useEffect(() => {
         if (__PROJECT__ !== 'storybook') {
-            dispatch(fetchArticles());
+            dispatch(fetchArticles({ page: 1 }));
         }
     }, [dispatch]);
 
     let content;
 
     if (isLoading) {
+        const skeletonWidth = view === ArticlesView.BIG ? 400 : 200;
+        const skeletonHeight = view === ArticlesView.BIG ? 400 : 20;
         content = (
             <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
-                <Skeleton width={400} height={20} className={cls.skeletonItem} />
-                <Skeleton width={400} height={20} className={cls.skeletonItem} />
-                <Skeleton width={400} height={20} className={cls.skeletonItem} />
+                <Skeleton width={skeletonWidth} height={skeletonHeight} className={cls.skeletonItem} />
+                <Skeleton width={skeletonWidth} height={skeletonHeight} className={cls.skeletonItem} />
+                <Skeleton width={skeletonWidth} height={skeletonHeight} className={cls.skeletonItem} />
             </div>
         );
     }
@@ -62,42 +66,35 @@ const ArticlePage = ({ className = '' }:ArticlePageProps) => {
     if (articles?.length) {
         switch (view) {
         case ArticlesView.BIG: content = (
-            <div style={{ display: 'flex', justifyContent: 'space-between', flexDirection: 'row' }}>
-                {articles?.map(({ id, title }) => (
-                    <AppLink
-                        style={{
-                            display: 'flex',
-                            flexDirection: 'column',
-                            justifyContent: 'center',
-                            width: '400px',
-                            height: '400px',
-                            backgroundColor: 'green',
-                        }}
-                        key={id}
-                        to={`/article/${id}`}
-                    >
-                        {title}
-                    </AppLink>
+            <div className={cls.articleWrap}>
+                {articles?.map(({ id, title, img }) => (
+                    <div className={cls.articleBigView} key={id}>
+                        <img src={img} alt={title} width={100} height={100} />
+                        <AppLink
+                            to={`/article/${id}`}
+                        >
+                            {title}
+                        </AppLink>
+                    </div>
+
                 ))}
             </div>
         );
             break;
 
         case ArticlesView.SMALL: content = (
-            <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
+            <div style={{ display: 'flex', alignItems: 'center', flexDirection: 'column' }}>
                 {articles?.map(({ id, title }) => <AppLink key={id} to={`/article/${id}`}>{title}</AppLink>)}
             </div>
         );
             break;
         default: content = (
-            <div style={{ display: 'flex', flexDirection: 'column', justifyContent: 'center' }}>
+            <div className={cls.articleWrap}>
                 {articles?.map(({ id, title }) => <AppLink key={id} to={`/article/${id}`}>{title}</AppLink>)}
             </div>
         );
         }
     }
-    const handleChangeView = (newView: ArticlesView) => (newView === ArticlesView.SMALL
-        ? setView(ArticlesView.BIG) : setView(ArticlesView.SMALL));
 
     return (
         <DynamicModuleLoader asyncReducers={reducers}>
@@ -111,7 +108,7 @@ const ArticlePage = ({ className = '' }:ArticlePageProps) => {
                 }}
                 >
                     <Text text={t('Article')} style={{ textAlign: 'center', flexGrow: 1 }} />
-                    <ArticleViewHandler className="" onViewClick={handleChangeView} view={view} />
+                    <ArticleViewHandler />
 
                 </div>
                 <div style={{ width: '100%' }}>
