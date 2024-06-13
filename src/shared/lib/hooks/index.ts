@@ -4,7 +4,6 @@ import { useEffect, useState } from 'react';
 import { useLocation, matchPath } from 'react-router-dom';
 import { AppRoutes, routerConfig } from 'shared/config/routerConfig/routerConfig';
 
-type CopiedValue=string| null
 type CopeFn=(text:string)=>Promise<void>
 export const useAppDispatch = () => useDispatch<AppDispatchType>();
 export const useCopyToClipboard = (text: string) => {
@@ -32,7 +31,7 @@ export const useTitle = () => {
         );
 
         if (!matchRoute) {
-            document.title = 'Страница не найдена';
+            document.title = routerConfig[AppRoutes.NOT_FOUND].title;
         } else {
             document.title = matchRoute.title;
         }
