@@ -1,4 +1,3 @@
-import { useParams } from 'react-router-dom';
 import { DynamicModuleLoader, ReducersList } from 'shared/lib/components/DynamicModuleLoader';
 import { useAppDispatch } from 'shared/lib/hooks';
 import { fetchArticlesById } from 'entities/Article/model/services';
@@ -17,14 +16,15 @@ import ArticleImageBlock from './ArticleImageBlock/ArticleImageBlock';
 import ArticleTextBlock from './ArticleTextBlock/ArticleTextBlock';
 import { articleReducers } from '../model/slice';
 
-const reducers:ReducersList = {
+const reducers: ReducersList = {
     articleDetails: articleReducers,
 };
 
 interface ArticleDetailsProps {
     id: string;
 }
-const ArticleDetails = ({ id }:ArticleDetailsProps) => {
+
+const ArticleDetails = ({ id }: ArticleDetailsProps) => {
     const dispatch = useAppDispatch();
     const article = useSelector(getArticleData);
     const error = useSelector(getArticleError);
@@ -36,7 +36,7 @@ const ArticleDetails = ({ id }:ArticleDetailsProps) => {
 
     let content;
 
-    const renderBlock = useCallback((block:ArticleBlock) => {
+    const renderBlock = useCallback((block: ArticleBlock) => {
         switch (block.type) {
         case ArticleBlockType.CODE: {
             return <ArticleCodeBlock key={block.id} block={block} className={cls.articleBlock} />;
@@ -47,7 +47,8 @@ const ArticleDetails = ({ id }:ArticleDetailsProps) => {
         case ArticleBlockType.TEXT: {
             return <ArticleTextBlock key={block.id} block={block} className={cls.articleBlock} />;
         }
-        default: return null;
+        default:
+            return null;
         }
     }, []);
 

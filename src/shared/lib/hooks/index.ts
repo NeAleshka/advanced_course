@@ -1,6 +1,8 @@
 import { useDispatch } from 'react-redux';
 import { type AppDispatchType } from 'app/providers/StoreProvider';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
+import { useLocation, matchPath } from 'react-router-dom';
+import { AppRoutes, routerConfig } from 'shared/config/routerConfig/routerConfig';
 
 type CopiedValue=string| null
 type CopeFn=(text:string)=>Promise<void>
@@ -17,4 +19,22 @@ export const useCopyToClipboard = (text: string) => {
         }
     };
     return { copy, copyText };
+};
+
+export const useTitle = () => {
+    const location = useLocation();
+
+    const currentPath = location.pathname;
+
+    useEffect(() => {
+        const matchRoute = Object.values(routerConfig).find(
+            (route) => matchPath({ path: route.path, end: false }, currentPath),
+        );
+
+        if (!matchRoute) {
+            document.title = 'Страница не найдена';
+        } else {
+            document.title = matchRoute.title;
+        }
+    }, [currentPath]);
 };

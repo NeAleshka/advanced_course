@@ -9,6 +9,7 @@ import { Loader } from 'widgets/Loader';
 import { useDispatch, useSelector } from 'react-redux';
 import { userActions } from 'entities/User';
 import { getUserInited } from 'entities/User/selectors/getUserAuthData';
+import { useTitle } from 'shared/lib/hooks';
 
 export const FullPageLoader = () => (
     <div className="full_page_loader">
@@ -23,7 +24,7 @@ const App = () => {
     useEffect(() => {
         dispatch(userActions.initialUser());
     }, [dispatch]);
-
+    useTitle();
     return (
         <div className={classNames('app', {}, [theme])}>
             <Suspense fallback={<FullPageLoader />}>
