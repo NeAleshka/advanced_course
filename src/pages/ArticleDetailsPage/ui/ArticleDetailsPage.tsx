@@ -11,6 +11,7 @@ import { Text } from 'shared/ui/Text/Text';
 import AddCommentForm from 'features/addComment/ui/addCommentForm';
 import { getAddCommentFormText } from 'features/addComment/model/selectors';
 import { addArticleComment } from 'entities/Article/model/services';
+import PageWrapper from 'shared/ui/PageWrapper/PageWrapper';
 
 const ArticleDetailsPage = () => {
     const { t } = useTranslation();
@@ -38,12 +39,12 @@ const ArticleDetailsPage = () => {
         );
     }
     return (
-        <>
+        <PageWrapper>
             <ArticleDetails id={id} />
             <Text title={t('comments')} />
             <AddCommentForm sendComment={sendArticleComment} />
             <CommentList comments={userComments} isLoading={articleCommentsLoading} />
-        </>
+        </PageWrapper>
     );
 };
 

@@ -30,6 +30,7 @@ const ArticleDetails = ({ id }: ArticleDetailsProps) => {
     const error = useSelector(getArticleError);
     const isLoading = useSelector(getArticleLoading);
     const { t } = useTranslation();
+
     useEffect(() => {
         dispatch(fetchArticlesById(id || ''));
     }, [id, dispatch]);

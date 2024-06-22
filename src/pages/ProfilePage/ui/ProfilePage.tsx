@@ -14,6 +14,7 @@ import { Country, Currency } from 'pages/ProfilePage/model/consts';
 import { updateProfileData } from 'entities/Profile/model/services/updateProfileData';
 import { Input } from 'shared/ui/Input/Input';
 import { useLocation, useParams } from 'react-router-dom';
+import PageWrapper from 'shared/ui/PageWrapper/PageWrapper';
 import classes from './ProfilePage.module.scss';
 import { type Profile } from '../model/types';
 import { inputFieldsArray } from './fieldsArray';
@@ -71,7 +72,7 @@ const ProfilePage = () => {
 
     return (
         <DynamicModuleLoader asyncReducers={reducers} removeAfterUnmount={false}>
-            <div className={classes.wrapper}>
+            <PageWrapper className={classes.wrapper}>
                 <div className={classes.title}>{t('profile')}</div>
                 {
                     isLoading ? <Loader /> : (
@@ -181,7 +182,7 @@ const ProfilePage = () => {
                     )
                 }
 
-            </div>
+            </PageWrapper>
         </DynamicModuleLoader>
 
     );

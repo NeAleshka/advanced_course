@@ -4,6 +4,13 @@
   align-items: center;
 }
 
+.articleHeader {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
 .skeletonItem {
   margin-bottom: 10px;
 }
@@ -38,19 +45,18 @@
 }
 
 .articleBigView {
-display: flex;
-justify-content: center;
-width: 400px;
-flex-direction: column;
-height: 400px;
-background-color: green;
-margin: 10px;
-align-items: center;
+  display: flex;
+  justify-content: center;
+  width: 400px;
+  flex-direction: column;
+  height: 600px;
+  background-color: green;
+  margin: 10px;
+  align-items: center;
 }
 
-.articleWrap  {
+.articleWrap {
   display: flex;
   justify-content: space-between;
-  flex-direction: row;
-  flex-wrap: wrap;
+  flex-flow: row wrap;
 }

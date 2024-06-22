@@ -1,11 +1,12 @@
 import { useTranslation } from 'react-i18next';
+import PageWrapper from 'shared/ui/PageWrapper/PageWrapper';
 
 const About = () => {
     const { t } = useTranslation('about');
     return (
-        <div>
+        <PageWrapper>
             {t('about_page')}
-        </div>
+        </PageWrapper>
     );
 };
 

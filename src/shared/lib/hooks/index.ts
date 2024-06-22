@@ -1,10 +1,18 @@
 import { useDispatch } from 'react-redux';
 import { type AppDispatchType } from 'app/providers/StoreProvider';
-import { useEffect, useState } from 'react';
+import {
+    MutableRefObject, useEffect, useRef, useState,
+} from 'react';
 import { useLocation, matchPath } from 'react-router-dom';
 import { AppRoutes, routerConfig } from 'shared/config/routerConfig/routerConfig';
 
 type CopeFn=(text:string)=>Promise<void>
+type infiniteScrollProps={
+    triggerRef:MutableRefObject<HTMLElement>
+    wrapperRef:MutableRefObject<HTMLElement>
+    callback?:()=>void
+}
+
 export const useAppDispatch = () => useDispatch<AppDispatchType>();
 export const useCopyToClipboard = (text: string) => {
     const [copyText, setCopyText] = useState<string|null>(text);
@@ -36,4 +44,31 @@ export const useTitle = () => {
             document.title = matchRoute.title;
         }
     }, [currentPath]);
+};
+
+export const useInfiniteScroll = ({ callback, triggerRef, wrapperRef }:infiniteScrollProps) => {
+    const observer = useRef<IntersectionObserver | null>(null);
+
+    useEffect(() => {
+        const triggerElement = triggerRef.current;
+        const wrapperElement = wrapperRef.current;
+        if (callback) {
+            const options = {
+                root: wrapperElement,
+                rootMargin: '0px',
+                threshold: 1.0,
+            };
+            observer.current = new IntersectionObserver(([entry]) => {
+                if (entry.isIntersecting) {
+                    callback();
+                }
+            }, options);
+            observer.current?.observe(triggerElement);
+        }
+        return () => {
+            if (observer && triggerElement) {
+                observer.current?.unobserve(triggerElement);
+            }
+        };
+    }, [callback, triggerRef, wrapperRef]);
 };

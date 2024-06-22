@@ -34,6 +34,11 @@ const articlesSlice = createSlice({
         setPage: (state, { payload }) => {
             state.page = payload;
         },
+        unitArticleState: (state) => {
+            const view = localStorage.getItem('view') as ArticlesView;
+            state.view = view;
+            state.limit = view === ArticlesView.SMALL ? 9 : 4;
+        },
     },
     extraReducers: ((builder) => {
         builder.addCase(fetchArticles.pending, (state) => {
@@ -41,10 +46,11 @@ const articlesSlice = createSlice({
         });
         builder.addCase(fetchArticles.fulfilled, (state, { payload }) => {
             state.isLoading = false;
-            articlesAdapter.setAll(state, payload);
+            articlesAdapter.addMany(state, payload);
             if (state.error) {
                 state.error = undefined;
             }
+            state.hasMore = payload.length > 0;
         });
         builder.addCase(fetchArticles.rejected, (state, { payload }) => {
             state.isLoading = false;
