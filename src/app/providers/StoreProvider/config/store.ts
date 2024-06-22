@@ -10,7 +10,7 @@ import { type StoreSchema } from './StoreSchema';
 export const createReduxStore = (
     initialState?: StoreSchema,
     asyncReducers?: ReducersMapObject<StoreSchema>,
-    navigate?: (to: To, options?: NavigateOptions) => void,
+    // navigate?: (to: To, options?: NavigateOptions) => void,
 ) => {
     const rootReducers: ReducersMapObject<StoreSchema> = {
         user: userReducer,
@@ -27,7 +27,7 @@ export const createReduxStore = (
             thunk: {
                 extraArgument: {
                     api: $api,
-                    navigate,
+                    // navigate,
                 },
             },
         }),

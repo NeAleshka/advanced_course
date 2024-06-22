@@ -24,6 +24,7 @@ export function createReducerManager(initialReducers: ReducersMapObject<StoreSch
         },
 
         add(key: StoreReducerKey, reducer: Reducer) {
+            console.log(reducers);
             if (!key || reducers[key]) {
                 return;
             }

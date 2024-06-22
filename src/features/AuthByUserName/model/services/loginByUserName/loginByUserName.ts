@@ -17,9 +17,9 @@ export const loginByUsername = createAsyncThunk<User, LoginRequest, ThunkConfig<
             }
             localStorage.setItem(LS_USER_AUTH, JSON.stringify(res.data));
             dispatch(userActions.setUserData(res.data));
-            if (extra.navigate) {
+            /*   if (extra.navigate) {
                 extra.navigate(`/profile/${res.data.id}`);
-            }
+            } */
             return res.data;
         } catch (e) {
             if (axios.isAxiosError(e)) {

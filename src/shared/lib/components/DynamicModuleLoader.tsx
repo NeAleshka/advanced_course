@@ -17,11 +17,13 @@ export const DynamicModuleLoader = (props: DynamicModuleLoaderProps) => {
     const { children, asyncReducers, removeAfterUnmount = true } = props;
     const store = useStore() as AppReduxStore;
     const dispatch = useDispatch();
-
+    const mountedReducers = Object.keys(store.reducerManager.getReducerMap());
     useEffect(() => {
         Object.entries(asyncReducers).forEach(([name, reducer]) => {
-            store.reducerManager.add(name as StoreReducerKey, reducer);
-            dispatch({ type: `@INIT ${name} reducer` });
+            if (!mountedReducers.includes(name)) {
+                store.reducerManager.add(name as StoreReducerKey, reducer);
+                dispatch({ type: `@INIT ${name} reducer` });
+            }
         });
 
         return () => {

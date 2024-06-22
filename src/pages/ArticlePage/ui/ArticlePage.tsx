@@ -56,6 +56,7 @@ const ArticlePage = ({ className = '' }:ArticlePageProps) => {
                     <div className={cls.articleBigView} key={id}>
                         <img src={img} alt={title} width={100} height={100} />
                         <AppLink
+                            key={id}
                             to={`/article/${id}`}
                         >
                             {title}
@@ -73,8 +74,8 @@ const ArticlePage = ({ className = '' }:ArticlePageProps) => {
             }}
             >
                 {articles?.map(({ id, title }) => (
-                    <div style={{ height: '200px' }}>
-                        <AppLink key={id} to={`/article/${id}`}>{title}</AppLink>
+                    <div style={{ height: '200px' }} key={id}>
+                        <AppLink to={`/article/${id}`}>{title}</AppLink>
                     </div>
                 ))}
             </div>
@@ -90,7 +91,7 @@ const ArticlePage = ({ className = '' }:ArticlePageProps) => {
     const skeletonWidth = view === ArticlesView.BIG ? 400 : 200;
     const skeletonHeight = view === ArticlesView.BIG ? 400 : 400;
     return (
-        <DynamicModuleLoader asyncReducers={reducers}>
+        <DynamicModuleLoader asyncReducers={reducers} removeAfterUnmount={false}>
             <PageWrapper
                 className={classNames(cls.Article, {}, [className])}
                 onScrollEndPage={loadNextPart}

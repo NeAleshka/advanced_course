@@ -28,7 +28,7 @@ export class TestAsyncThunk<Returned, Arg, RejectedValue> {
         this.navigate = jest.fn();
         this.extra = {
             api: this.api,
-            navigate: this.navigate,
+            // navigate: this.navigate,
         };
     }
 
