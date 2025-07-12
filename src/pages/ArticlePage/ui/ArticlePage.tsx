@@ -16,14 +16,14 @@ import { fetchArticles, fetchNextPageArticles } from '../model/services';
 import cls from './ArticlePage.module.scss';
 
 export interface ArticlePageProps {
-    className?:string;
+    className?: string;
 }
 
-const reducers:ReducersList = {
+const reducers: ReducersList = {
     articles: articlesReducers,
 };
 
-const ArticlePage = ({ className = '' }:ArticlePageProps) => {
+const ArticlePage = ({ className = '' }: ArticlePageProps) => {
     const { t } = useTranslation();
     const dispatch = useAppDispatch();
     const articles = useSelector(getArticles.selectAll);
@@ -74,8 +74,8 @@ const ArticlePage = ({ className = '' }:ArticlePageProps) => {
             }}
             >
                 {articles?.map(({ id, title }) => (
-                    <div style={{ height: '200px' }} key={id}>
-                        <AppLink to={`/article/${id}`}>{title}</AppLink>
+                    <div style={{ height: '200px' }}>
+                        <AppLink key={id} to={`/article/${id}`}>{title}</AppLink>
                     </div>
                 ))}
             </div>
@@ -113,7 +113,7 @@ const ArticlePage = ({ className = '' }:ArticlePageProps) => {
                             <Skeleton width={skeletonWidth} height={skeletonHeight} className={cls.skeletonItem} />
                             <Skeleton width={skeletonWidth} height={skeletonHeight} className={cls.skeletonItem} />
                         </div>
-                    ) }
+                    )}
                 </div>
             </PageWrapper>
         </DynamicModuleLoader>
